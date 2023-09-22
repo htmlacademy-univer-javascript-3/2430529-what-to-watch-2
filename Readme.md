@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть»
 
-* Студент: [Татьяна Полонская](https://up.htmlacademy.ru/univer-js3/2/user/2430529).
-* Наставник: `Неизвестно`.
+- Студент: [Татьяна Полонская](https://up.htmlacademy.ru/univer-js3/2/user/2430529).
+- Наставник: [Юлия Корецкая](https://htmlacademy.ru/profile/id11886).
 
 ---
 
