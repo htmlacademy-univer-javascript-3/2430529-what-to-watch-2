@@ -1,4 +1,4 @@
-import MainPage from '../main-page/main-page';
+import MainPage from '../pages/main/main';
 
 type Props = {
   title: string;
