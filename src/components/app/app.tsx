@@ -24,7 +24,7 @@ export default function App(props: Props) {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
               <MyListPage />
             </PrivateRoute>
           }
