@@ -3,6 +3,7 @@ import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
 import { ShortFilm, WholeFilm } from '../../types/films';
 import ListFilms from '../../components/list-films/list-films';
+import Footer from '../../components/footer/footer';
 
 type Props = {
   film: WholeFilm;
@@ -116,7 +117,7 @@ export default function FilmPage({ film, likeThis }: Props) {
                 <p className="film-rating__meta">
                   <span className="film-rating__level">Very good</span>
                   <span className="film-rating__count">
-                    {film.scoresCount} ratings
+                    {film.ratingCount} ratings
                   </span>
                 </p>
               </div>
@@ -146,19 +147,7 @@ export default function FilmPage({ film, likeThis }: Props) {
           <ListFilms films={likeThis} />
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );

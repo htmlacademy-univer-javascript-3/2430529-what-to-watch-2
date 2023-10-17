@@ -11,7 +11,7 @@ export type ShortFilm = {
 export type DetailFilm = {
   description: string;
   rating: number;
-  scoresCount: number;
+  ratingCount: number;
   director: string;
   starring: string[];
   isFavorite: boolean;
