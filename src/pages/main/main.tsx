@@ -1,27 +1,24 @@
-import Card from '../../components/card/card';
+import ListFilms from '../../components/list-films/list-films';
 import Logo from '../../components/logo/logo';
+import { ShortFilm, WholeFilm } from '../../types/films';
 
 type Props = {
-  title: string;
-  genre: string;
-  year: number;
+  promoFilm: WholeFilm;
+  films: ShortFilm[];
 };
 
-export default function MainPage({ title, genre, year }: Props) {
+export default function MainPage({ promoFilm, films }: Props) {
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={promoFilm.poster} alt={promoFilm.title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
-          <Logo/>
+          <Logo />
 
           <ul className="user-block">
             <li className="user-block__item">
@@ -44,7 +41,7 @@ export default function MainPage({ title, genre, year }: Props) {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
+                src={promoFilm.poster}
                 alt="The Grand Budapest Hotel poster"
                 width="218"
                 height="327"
@@ -52,10 +49,10 @@ export default function MainPage({ title, genre, year }: Props) {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{promoFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -140,28 +137,7 @@ export default function MainPage({ title, genre, year }: Props) {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+          <ListFilms films={films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">
