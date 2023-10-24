@@ -8,10 +8,10 @@ import AddReviewPage from '../../pages/add-review/add-review';
 import PlayerPage from '../../pages/player/player';
 import NotFoundPage from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { ShortFilm, WholeFilm } from '../../types/films';
+import { ShortFilm, Film } from '../../types/films';
 
 type Props = {
-  promoFilm: WholeFilm;
+  promoFilm: Film;
   films: ShortFilm[];
 };
 
