@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
-import { ShortFilm, WholeFilm } from '../../types/films';
+import { ShortFilm, Film } from '../../types/films';
 import ListFilms from '../../components/list-films/list-films';
 import Footer from '../../components/footer/footer';
 
 type Props = {
-  film: WholeFilm;
+  film: Film;
   likeThis: ShortFilm[];
 };
 
@@ -16,7 +16,7 @@ export default function FilmPage({ film, likeThis }: Props) {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.background} alt={film.title} />
+            <img src={film.backgroundImage} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -43,10 +43,10 @@ export default function FilmPage({ film, likeThis }: Props) {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film.title}</h2>
+              <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.year}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -84,8 +84,8 @@ export default function FilmPage({ film, likeThis }: Props) {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img
-                src={film.poster}
-                alt={film.title}
+                src={film.posterImage}
+                alt={film.name}
                 width="218"
                 height="327"
               />
@@ -117,7 +117,7 @@ export default function FilmPage({ film, likeThis }: Props) {
                 <p className="film-rating__meta">
                   <span className="film-rating__level">Very good</span>
                   <span className="film-rating__count">
-                    {film.ratingCount} ratings
+                    {film.scoresCount} ratings
                   </span>
                 </p>
               </div>

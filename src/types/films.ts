@@ -1,20 +1,19 @@
 export type ShortFilm = {
   id: number;
-  title: string;
-  poster: string;
-  background: string;
-  videoLink: string;
-  genre: string;
-  year: number;
+  name: string;
+  posterImage: string;
+  previewImage?: string;
 };
 
-export type DetailFilm = {
+export type Film = ShortFilm & {
+  backgroundImage: string;
+  videoLink: string;
   description: string;
   rating: number;
-  ratingCount: number;
+  genre: string;
+  scoresCount: number;
   director: string;
   starring: string[];
+  released: number;
   isFavorite: boolean;
 };
-
-export type WholeFilm = ShortFilm & DetailFilm;

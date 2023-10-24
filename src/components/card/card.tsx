@@ -14,14 +14,14 @@ export default function Card({ film, onMouseOver }: Props) {
       onMouseOver={() => onMouseOver(film.id)}
     >
       <div className="small-film-card__image">
-        <img src={film.poster} alt={film.title} width="280" height="175" />
+        <img src={film.posterImage} alt={film.name} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
         <Link
           className="small-film-card__link"
           to={AppRoute.Film.replace(':id', film.id.toString())}
         >
-          {film.title}
+          {film.name}
         </Link>
       </h3>
     </article>

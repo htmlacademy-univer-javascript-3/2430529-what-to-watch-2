@@ -1,10 +1,10 @@
 import Footer from '../../components/footer/footer';
 import ListFilms from '../../components/list-films/list-films';
 import Logo from '../../components/logo/logo';
-import { ShortFilm, WholeFilm } from '../../types/films';
+import { ShortFilm, Film } from '../../types/films';
 
 type Props = {
-  promoFilm: WholeFilm;
+  promoFilm: Film;
   films: ShortFilm[];
 };
 
@@ -13,7 +13,7 @@ export default function MainPage({ promoFilm, films }: Props) {
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.poster} alt={promoFilm.title} />
+          <img src={promoFilm.posterImage} alt={promoFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -42,7 +42,7 @@ export default function MainPage({ promoFilm, films }: Props) {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src={promoFilm.poster}
+                src={promoFilm.posterImage}
                 alt="The Grand Budapest Hotel poster"
                 width="218"
                 height="327"
@@ -50,10 +50,10 @@ export default function MainPage({ promoFilm, films }: Props) {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.year}</span>
+                <span className="film-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">

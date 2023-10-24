@@ -7,8 +7,7 @@ type Props = {
 };
 
 export default function ListFilms({ films }: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeCard, setActiveCard] = useState<number>();
+  const [, setActiveCard] = useState<number>();
 
   const handleMouseOver = (id: number) => {
     setActiveCard(id);

@@ -13,7 +13,7 @@ export default function AddReviewPage({ film }: Props) {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.poster} alt={film.title} />
+          <img src={film.posterImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -28,7 +28,7 @@ export default function AddReviewPage({ film }: Props) {
                   to={AppRoute.Film.replace(':id', film.id.toString())}
                   className="breadcrumbs__link"
                 >
-                  {film.title}
+                  {film.name}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -60,7 +60,12 @@ export default function AddReviewPage({ film }: Props) {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film.poster} alt={film.title} width="218" height="327" />
+          <img
+            src={film.posterImage}
+            alt={film.name}
+            width="218"
+            height="327"
+          />
         </div>
       </div>
 
