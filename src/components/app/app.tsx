@@ -8,11 +8,11 @@ import AddReviewPage from '../../pages/add-review/add-review';
 import PlayerPage from '../../pages/player/player';
 import NotFoundPage from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
+import { ShortFilm, Film } from '../../types/films';
 
 type Props = {
-  title: string;
-  genre: string;
-  year: number;
+  promoFilm: Film;
+  films: ShortFilm[];
 };
 
 export default function App(props: Props) {
@@ -24,14 +24,23 @@ export default function App(props: Props) {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListPage />
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <MyListPage films={props.films} />
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Film} element={<FilmPage />} />
-        <Route path={AppRoute.AddReview} element={<AddReviewPage />} />
-        <Route path={AppRoute.Player} element={<PlayerPage />} />
+        <Route
+          path={AppRoute.Film}
+          element={<FilmPage film={props.promoFilm} likeThis={props.films} />}
+        />
+        <Route
+          path={AppRoute.AddReview}
+          element={<AddReviewPage film={props.promoFilm} />}
+        />
+        <Route
+          path={AppRoute.Player}
+          element={<PlayerPage film={props.promoFilm} />}
+        />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

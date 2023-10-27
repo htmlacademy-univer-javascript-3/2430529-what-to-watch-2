@@ -1,10 +1,16 @@
-export default function PlayerPage() {
+import { ShortFilm } from '../../types/films';
+
+type Props = {
+  film: ShortFilm;
+};
+
+export default function PlayerPage({film}: Props) {
   return (
     <div className="player">
       <video
         src="#"
         className="player__video"
-        poster="img/player-poster.jpg"
+        poster={film.posterImage}
       >
       </video>
 
@@ -21,7 +27,7 @@ export default function PlayerPage() {
               max="100"
             >
             </progress>
-            <div className="player__toggler" style={{left: '30%'}}>
+            <div className="player__toggler" style={{ left: '30%' }}>
               Toggler
             </div>
           </div>
