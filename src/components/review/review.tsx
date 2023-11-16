@@ -5,7 +5,12 @@ type Props = {
 };
 
 export default function ReviewItem({ review }: Props) {
-  const date = new Date(review.date).toLocaleDateString();
+  const date = new Date(review.date).toLocaleString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
   return (
     <div className="review">
       <blockquote className="review__quote">
@@ -19,7 +24,7 @@ export default function ReviewItem({ review }: Props) {
         </footer>
       </blockquote>
 
-      <div className="review__rating">{review.score}</div>
+      <div className="review__rating">{review.score.toFixed(1)}</div>
     </div>
   );
 }

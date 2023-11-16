@@ -10,6 +10,7 @@ export type Film = ShortFilm & {
   videoLink: string;
   description: string;
   rating: number;
+  runTime: number;
   genre: string;
   scoresCount: number;
   director: string;

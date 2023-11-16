@@ -5,6 +5,8 @@ type Props = {
 };
 
 export default function DetailsTab({ film }: Props) {
+  const runTime = `${~~(film.runTime / 60)}h ${(film.runTime % 60).toFixed(0)}m`;
+
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">
@@ -23,7 +25,7 @@ export default function DetailsTab({ film }: Props) {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">1h 39m</span>
+          <span className="film-card__details-value">{runTime}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
