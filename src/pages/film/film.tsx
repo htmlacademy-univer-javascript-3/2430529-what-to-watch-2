@@ -4,6 +4,7 @@ import { AppRoute } from '../../const';
 import { ShortFilm, Film } from '../../types/films';
 import ListFilms from '../../components/list-films/list-films';
 import Footer from '../../components/footer/footer';
+import Tabs from '../../components/tabs/tabs';
 
 type Props = {
   film: Film;
@@ -90,8 +91,9 @@ export default function FilmPage({ film, likeThis }: Props) {
                 height="327"
               />
             </div>
+            <Tabs />
 
-            <div className="film-card__desc">
+            {/* <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
@@ -135,7 +137,7 @@ export default function FilmPage({ film, likeThis }: Props) {
                   <strong>Starring: {film.starring.join(', ')}.</strong>
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
