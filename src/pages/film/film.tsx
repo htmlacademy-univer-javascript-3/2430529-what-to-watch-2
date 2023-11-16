@@ -4,6 +4,9 @@ import { AppRoute } from '../../const';
 import { ShortFilm, Film } from '../../types/films';
 import ListFilms from '../../components/list-films/list-films';
 import Footer from '../../components/footer/footer';
+import Tabs from '../../components/tabs/tabs';
+
+import { reviews } from '../../mocks/reviews';
 
 type Props = {
   film: Film;
@@ -50,15 +53,16 @@ export default function FilmPage({ film, likeThis }: Props) {
               </p>
 
               <div className="film-card__buttons">
-                <button
+                <Link
                   className="btn btn--play film-card__button"
-                  type="button"
+                  to={AppRoute.Player.replace(':id', '1')}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
+
                 <button
                   className="btn btn--list film-card__button"
                   type="button"
@@ -69,6 +73,7 @@ export default function FilmPage({ film, likeThis }: Props) {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
+
                 <Link
                   className="btn film-card__button"
                   to={AppRoute.AddReview.replace(':id', '1')}
@@ -90,52 +95,7 @@ export default function FilmPage({ film, likeThis }: Props) {
                 height="327"
               />
             </div>
-
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">
-                      Overview
-                    </a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">
-                      Details
-                    </a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">
-                      Reviews
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{film.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">
-                    {film.scoresCount} ratings
-                  </span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                {film.description.split('.').map((str) => (
-                  <p key={str.length}>{str}.</p>
-                ))}
-
-                <p className="film-card__director">
-                  <strong>Director: {film.director}.</strong>
-                </p>
-
-                <p className="film-card__starring">
-                  <strong>Starring: {film.starring.join(', ')}.</strong>
-                </p>
-              </div>
-            </div>
+            <Tabs film={film} reviews={reviews} />
           </div>
         </div>
       </section>
