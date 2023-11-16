@@ -16,7 +16,7 @@ export const Card = ({ film }: Props) => {
     if (isHover) {
       const timer = setTimeout(() => {
         setIsPlay(true);
-      }, 500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [isHover]);
@@ -40,7 +40,7 @@ export const Card = ({ film }: Props) => {
         <VideoPlayer
           videoLink={
             isPlay
-              ? 'https://dev.speech-up.online/api/video/de5eda11-6391-473e-ba14-46f6372cebde'
+              ? 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm'
               : ''
           }
           poster={film.posterImage}
