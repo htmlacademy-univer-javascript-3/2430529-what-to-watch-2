@@ -3,6 +3,7 @@ export type ShortFilm = {
   name: string;
   posterImage: string;
   previewImage?: string;
+  genre: string;
 };
 
 export type Film = ShortFilm & {

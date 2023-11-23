@@ -1,20 +1,26 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { GenresEnum } from '../types/genres';
 import { Films } from '../types/films';
-import { changeGenre } from './action';
+import { changeGenre, getFilmsByGenre, setFilms } from './action';
+import { ALL_GENRES } from '../types/genres';
 
 type InitialState = {
-  genre: GenresEnum;
+  genre: string;
   films: Films;
 };
 
 const initialState: InitialState = {
-  genre: GenresEnum.Drama,
+  genre: ALL_GENRES,
   films: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder.addCase(changeGenre, (state, action) => {
     state.genre = action.payload;
+  });
+  builder.addCase(getFilmsByGenre, (state) => {
+    state.films = state.films.filter((film) => film.genre === state.genre);
+  });
+  builder.addCase(setFilms, (state, action) => {
+    state.films = action.payload;
   });
 });
