@@ -1,7 +1,7 @@
 import { ShortFilm } from '../../types/films';
 import { ALL_GENRES, GenresEnum } from '../../types/genres';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
-import { changeGenre } from '../../store/action';
+import { setGenre } from '../../store/action';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
@@ -23,7 +23,7 @@ export default function ListGenres({ films }: Props) {
   const genres = getArrayOfUniqueGenres(films);
 
   const handleClick = (genre: string) => {
-    dispatch(changeGenre(genre));
+    dispatch(setGenre(genre));
   };
 
   return (
