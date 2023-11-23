@@ -18,3 +18,5 @@ export type Film = ShortFilm & {
   released: number;
   isFavorite: boolean;
 };
+
+export type Films = Film[];

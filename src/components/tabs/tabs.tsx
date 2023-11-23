@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import DetailsTab from './details-tab';
-import ReviewsTab from './reviews-tab';
-import OverviewTab from './overview-tab';
+import DetailsTab from './details-tab/details-tab';
+import ReviewsTab from './reviews-tab/reviews-tab';
+import OverviewTab from './overview-tab/overview-tab';
 import './style.css';
 import { Film } from '../../types/films';
 import { Review } from '../../types/review';
