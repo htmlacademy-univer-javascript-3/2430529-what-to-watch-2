@@ -20,6 +20,7 @@ export default function ListGenres({ films }: Props) {
   const dispatch = useDispatch();
   const storeGenre = useSelector((state: RootState) => state.genre);
 
+  //useMemo
   const genres = getArrayOfUniqueGenres(films);
 
   const handleClick = (genre: string) => {
