@@ -3,6 +3,7 @@ export type ShortFilm = {
   name: string;
   posterImage: string;
   previewImage?: string;
+  genre: string;
 };
 
 export type Film = ShortFilm & {
@@ -18,3 +19,5 @@ export type Film = ShortFilm & {
   released: number;
   isFavorite: boolean;
 };
+
+export type Films = Film[];
