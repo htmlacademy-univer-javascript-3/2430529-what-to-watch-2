@@ -56,6 +56,67 @@ export const films: ShortFilm[] = [
       'https://w.forfun.com/fetch/6e/6e30e1305b05bc21fb5decfd08df61e2.jpeg',
     genre: GenresEnum.Family,
   },
+  {
+    id: 8,
+    name: 'Гарри Поттер и философский камень',
+    posterImage:
+      'https://ucare.timepad.ru/c4023654-57f4-408d-95cd-035e08fbf84c/posterImage_event_2270055.jpg',
+    genre: GenresEnum.Fantasy,
+  },
+  {
+    id: 9,
+    name: 'Гарри Поттер и Тайная комната',
+    posterImage: 'https://web-3.ru/data/articles/40337/3.jpg',
+    genre: GenresEnum.Drama,
+  },
+  {
+    id: 10,
+    name: 'Гарри Поттер и узник Азкабана',
+    posterImage: 'https://web-3.ru/data/articles/40337/3.jpg',
+    genre: GenresEnum.Fantasy,
+  },
+  {
+    id: 11,
+    name: 'Гарри Поттер и Кубок огня',
+    posterImage:
+      'https://www.1c-interes.ru/images/2022/10/kubok_ognya_regionalnoe_main.jpg',
+    genre: GenresEnum.Drama,
+  },
+  {
+    id: 12,
+    name: 'Гарри Поттер и Орден Феникса',
+    posterImage:
+      'https://pic.rutubelist.ru/video/17/85/1785b23dca62b5e6415ebcab81557c58.jpg',
+    genre: GenresEnum.Family,
+  },
+  {
+    id: 13,
+    name: 'Гарри Поттер и Принц-полукровка',
+    posterImage:
+      'https://w.forfun.com/fetch/2c/2c95666815fa29c99129097bb02e79b8.jpeg',
+    genre: GenresEnum.Family,
+  },
+  {
+    id: 14,
+    name: 'Гарри Поттер и Дары Смерти. Часть 1',
+    posterImage:
+      'https://w.forfun.com/fetch/36/3668f633dd3b0dd85b7e989754222b88.jpeg',
+    genre: GenresEnum.Family,
+  },
+  {
+    id: 15,
+    name: 'Гарри Поттер и Дары Смерти. Часть 2',
+    posterImage:
+      'https://w.forfun.com/fetch/6e/6e30e1305b05bc21fb5decfd08df61e2.jpeg',
+    genre: GenresEnum.Family,
+  },
+  {
+    id: 16,
+    name: 'Гарри Поттер и Дары Смерти. Часть 2',
+    posterImage:
+      'https://w.forfun.com/fetch/6e/6e30e1305b05bc21fb5decfd08df61e2.jpeg',
+    genre: GenresEnum.Family,
+  },
 ];
 
 export const promoFilm: Film = {

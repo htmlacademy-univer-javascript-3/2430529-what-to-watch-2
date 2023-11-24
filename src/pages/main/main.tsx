@@ -25,8 +25,8 @@ export default function MainPage({ promoFilm, films }: Props) {
   const [countLimit, setCountLimit] = useState(LIMIT_FILMS);
 
   const currentFilms = useMemo(
-    () => getFilmsByGenre(films.slice(0, countLimit), currentGenre),
-    [currentGenre, films, countLimit]
+    () => getFilmsByGenre(films, currentGenre),
+    [currentGenre, films]
   );
 
   const handleShowMoreButton = () => {
@@ -111,9 +111,9 @@ export default function MainPage({ promoFilm, films }: Props) {
 
           <ListGenres films={films} />
 
-          <ListFilms films={currentFilms} />
+          <ListFilms films={currentFilms.slice(0, countLimit)} />
 
-          {countLimit < films.length && (
+          {countLimit < currentFilms.length && (
             <ShowMore onClick={handleShowMoreButton} />
           )}
         </section>
