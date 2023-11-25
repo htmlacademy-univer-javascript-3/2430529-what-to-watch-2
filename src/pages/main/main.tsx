@@ -5,7 +5,7 @@ import ListGenres from '../../components/list-genres/list-genres';
 import Logo from '../../components/logo/logo';
 import { ShortFilm, Film } from '../../types/films';
 import { RootState } from '../../store';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ALL_GENRES } from '../../types/genres';
 import ShowMore from '../../components/show-more/show-more';
 
@@ -22,12 +22,16 @@ const getFilmsByGenre = (films: ShortFilm[], genre: string) =>
 export default function MainPage({ promoFilm, films }: Props) {
   const currentGenre = useSelector((state: RootState) => state.genre);
 
-  const [countLimit, setCountLimit] = useState(LIMIT_FILMS);
-
   const currentFilms = useMemo(
     () => getFilmsByGenre(films, currentGenre),
     [currentGenre, films]
   );
+
+  const [countLimit, setCountLimit] = useState(LIMIT_FILMS);
+
+  useEffect(() => {
+    setCountLimit(LIMIT_FILMS);
+  }, [currentGenre]);
 
   const handleShowMoreButton = () => {
     setCountLimit((prev) => prev + LIMIT_FILMS);
