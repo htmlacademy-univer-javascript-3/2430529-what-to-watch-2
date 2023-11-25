@@ -5,15 +5,18 @@ import ListGenres from '../../components/list-genres/list-genres';
 import Logo from '../../components/logo/logo';
 import { ShortFilm, Film } from '../../types/films';
 import { RootState } from '../../store';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ALL_GENRES } from '../../types/genres';
+import ShowMore from '../../components/show-more/show-more';
 
 type Props = {
   promoFilm: Film;
   films: ShortFilm[];
 };
 
-export const getFilmsByGenre = (films: ShortFilm[], genre: string) =>
+const LIMIT_FILMS = 8;
+
+const getFilmsByGenre = (films: ShortFilm[], genre: string) =>
   genre === ALL_GENRES ? films : films.filter((film) => film.genre === genre);
 
 export default function MainPage({ promoFilm, films }: Props) {
@@ -23,6 +26,16 @@ export default function MainPage({ promoFilm, films }: Props) {
     () => getFilmsByGenre(films, currentGenre),
     [currentGenre, films]
   );
+
+  const [countLimit, setCountLimit] = useState(LIMIT_FILMS);
+
+  useEffect(() => {
+    setCountLimit(LIMIT_FILMS);
+  }, [currentGenre]);
+
+  const handleShowMoreButton = () => {
+    setCountLimit((prev) => prev + LIMIT_FILMS);
+  };
 
   return (
     <>
@@ -102,13 +115,11 @@ export default function MainPage({ promoFilm, films }: Props) {
 
           <ListGenres films={films} />
 
-          <ListFilms films={currentFilms} />
+          <ListFilms films={currentFilms.slice(0, countLimit)} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
+          {countLimit < currentFilms.length && (
+            <ShowMore onClick={handleShowMoreButton} />
+          )}
         </section>
 
         <Footer />

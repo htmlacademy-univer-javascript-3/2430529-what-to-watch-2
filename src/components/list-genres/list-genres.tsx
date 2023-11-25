@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { setGenre } from '../../store/action';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { useMemo } from 'react';
 
 type Props = {
   films: ShortFilm[];
@@ -20,7 +21,7 @@ export default function ListGenres({ films }: Props) {
   const dispatch = useDispatch();
   const storeGenre = useSelector((state: RootState) => state.genre);
 
-  const genres = getArrayOfUniqueGenres(films);
+  const genres = useMemo(() => getArrayOfUniqueGenres(films), [films]);
 
   const handleClick = (genre: string) => {
     dispatch(setGenre(genre));
