@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { ShortFilm } from '../types/films';
-import { setFilms, setGenre } from './action';
+import { loadFilms, setFilms, setGenre } from './action';
 import { ALL_GENRES } from '../types/genres';
 import { films } from '../mocks/films';
 
@@ -19,6 +19,9 @@ export const reducer = createReducer(initialState, (builder) => {
     state.genre = action.payload;
   });
   builder.addCase(setFilms, (state, action) => {
+    state.films = action.payload;
+  });
+  builder.addCase(loadFilms, (state, action) => {
     state.films = action.payload;
   });
 });
