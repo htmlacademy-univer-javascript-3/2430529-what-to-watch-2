@@ -38,12 +38,8 @@ export const Card = ({ film }: Props) => {
     >
       <div className="small-film-card__image">
         <VideoPlayer
-          videoLink={
-            isPlay
-              ? 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm'
-              : ''
-          }
-          poster={film.posterImage}
+          videoLink={isPlay ? film.previewVideoLink : ''}
+          poster={film.previewImage}
         />
       </div>
       <h3 className="small-film-card__title">

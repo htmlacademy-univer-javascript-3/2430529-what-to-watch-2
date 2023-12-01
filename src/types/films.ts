@@ -1,8 +1,8 @@
 export type ShortFilm = {
   id: number;
   name: string;
-  posterImage: string;
-  previewImage?: string;
+  previewImage: string;
+  previewVideoLink: string;
   genre: string;
 };
 
