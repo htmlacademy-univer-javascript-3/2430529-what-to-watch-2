@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { ShortFilm } from '../types/films';
 import { loadFilms, setFilms, setGenre } from './action';
 import { ALL_GENRES } from '../types/genres';
-import { films } from '../mocks/films';
+// import { films } from '../mocks/films';
 
 type InitialState = {
   genre: string;
@@ -11,7 +11,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   genre: ALL_GENRES,
-  films: films,
+  films: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {

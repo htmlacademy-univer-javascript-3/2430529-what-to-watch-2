@@ -5,7 +5,7 @@ import { Films } from '../types/films.ts';
 import { loadFilms } from './action.ts';
 
 export enum APIRoute {
-  FilmsService = '/films',
+  FilmsService = '/wtw/films',
   Login = '/login',
   Logout = '/logout',
 }
