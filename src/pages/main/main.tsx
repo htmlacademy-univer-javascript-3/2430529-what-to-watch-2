@@ -41,7 +41,7 @@ export default function MainPage({ promoFilm, films }: Props) {
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.posterImage} alt={promoFilm.name} />
+          <img src={promoFilm.previewImage} alt={promoFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -70,7 +70,7 @@ export default function MainPage({ promoFilm, films }: Props) {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src={promoFilm.posterImage}
+                src={promoFilm.previewImage}
                 alt="The Grand Budapest Hotel poster"
                 width="218"
                 height="327"
