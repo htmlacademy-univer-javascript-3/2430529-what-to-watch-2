@@ -10,3 +10,5 @@ export const setFilms = createAction('setFilms', (value: Films) => ({
 }));
 
 export const loadFilms = createAction<Films>('loadFilms');
+
+export const setisLoadingFilms = createAction<boolean>('setisLoadingFilms');
