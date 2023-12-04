@@ -8,6 +8,7 @@ import { RootState } from '../../store';
 import { useEffect, useMemo, useState } from 'react';
 import { ALL_GENRES } from '../../types/genres';
 import ShowMore from '../../components/show-more/show-more';
+import Spinner from '../../components/spinner/spinner';
 
 type Props = {
   promoFilm: Film;
@@ -21,6 +22,7 @@ const getFilmsByGenre = (films: ShortFilm[], genre: string) =>
 
 export default function MainPage({ promoFilm, films }: Props) {
   const currentGenre = useSelector((state: RootState) => state.genre);
+  const isLoadingFilms = useSelector((state: RootState) => state.isLoading);
 
   const currentFilms = useMemo(
     () => getFilmsByGenre(films, currentGenre),
@@ -41,7 +43,7 @@ export default function MainPage({ promoFilm, films }: Props) {
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.posterImage} alt={promoFilm.name} />
+          <img src={promoFilm.previewImage} alt={promoFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -70,7 +72,7 @@ export default function MainPage({ promoFilm, films }: Props) {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src={promoFilm.posterImage}
+                src={promoFilm.previewImage}
                 alt="The Grand Budapest Hotel poster"
                 width="218"
                 height="327"
@@ -116,6 +118,7 @@ export default function MainPage({ promoFilm, films }: Props) {
           <ListGenres films={films} />
 
           <ListFilms films={currentFilms.slice(0, countLimit)} />
+          {isLoadingFilms && <Spinner />}
 
           {countLimit < currentFilms.length && (
             <ShowMore onClick={handleShowMoreButton} />

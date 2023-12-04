@@ -8,38 +8,40 @@ import AddReviewPage from '../../pages/add-review/add-review';
 import PlayerPage from '../../pages/player/player';
 import NotFoundPage from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { ShortFilm, Film } from '../../types/films';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { promoFilm } from '../../mocks/films';
 
-type Props = {
-  promoFilm: Film;
-  films: ShortFilm[];
-};
+export default function App() {
+  const films = useSelector((state: RootState) => state.films);
 
-export default function App(props: Props) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainPage {...props} />} />
+        <Route
+          path={AppRoute.Main}
+          element={<MainPage films={films} promoFilm={promoFilm} />}
+        />
         <Route path={AppRoute.Login} element={<SingInPage />} />
         <Route
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <MyListPage films={props.films} />
+              <MyListPage films={films} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmPage film={props.promoFilm} likeThis={props.films} />}
+          element={<FilmPage film={promoFilm} likeThis={films} />}
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReviewPage film={props.promoFilm} />}
+          element={<AddReviewPage film={promoFilm} />}
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerPage film={props.promoFilm} />}
+          element={<PlayerPage film={promoFilm} />}
         />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>

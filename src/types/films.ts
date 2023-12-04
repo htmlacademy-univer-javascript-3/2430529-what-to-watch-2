@@ -1,8 +1,8 @@
 export type ShortFilm = {
   id: number;
   name: string;
-  posterImage: string;
-  previewImage?: string;
+  previewImage: string;
+  previewVideoLink: string;
   genre: string;
 };
 
@@ -20,4 +20,4 @@ export type Film = ShortFilm & {
   isFavorite: boolean;
 };
 
-export type Films = Film[];
+export type Films = ShortFilm[];

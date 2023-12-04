@@ -8,3 +8,7 @@ export const setGenre = createAction('setGenre', (value: string) => ({
 export const setFilms = createAction('setFilms', (value: Films) => ({
   payload: value,
 }));
+
+export const loadFilms = createAction<Films>('loadFilms');
+
+export const setisLoadingFilms = createAction<boolean>('setisLoadingFilms');
