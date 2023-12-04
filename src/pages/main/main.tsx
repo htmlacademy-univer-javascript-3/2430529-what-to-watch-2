@@ -8,6 +8,7 @@ import { RootState } from '../../store';
 import { useEffect, useMemo, useState } from 'react';
 import { ALL_GENRES } from '../../types/genres';
 import ShowMore from '../../components/show-more/show-more';
+import Spinner from '../../components/spinner/spinner';
 
 type Props = {
   promoFilm: Film;
@@ -21,6 +22,7 @@ const getFilmsByGenre = (films: ShortFilm[], genre: string) =>
 
 export default function MainPage({ promoFilm, films }: Props) {
   const currentGenre = useSelector((state: RootState) => state.genre);
+  const isLoadingFilms = useSelector((state: RootState) => state.isLoading);
 
   const currentFilms = useMemo(
     () => getFilmsByGenre(films, currentGenre),
@@ -116,6 +118,7 @@ export default function MainPage({ promoFilm, films }: Props) {
           <ListGenres films={films} />
 
           <ListFilms films={currentFilms.slice(0, countLimit)} />
+          {isLoadingFilms && <Spinner />}
 
           {countLimit < currentFilms.length && (
             <ShowMore onClick={handleShowMoreButton} />
