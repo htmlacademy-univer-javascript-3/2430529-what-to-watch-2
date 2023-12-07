@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from '../../pages/main/main';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import SingInPage from '../../pages/sign-in/sign-in';
 import MyListPage from '../../pages/my-list/my-list';
 import FilmPage from '../../pages/film/film';
@@ -26,7 +26,7 @@ export default function App() {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute>
               <MyListPage films={films} />
             </PrivateRoute>
           }
