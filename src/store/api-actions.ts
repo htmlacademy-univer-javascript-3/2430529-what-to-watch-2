@@ -10,6 +10,7 @@ import {
 import { AuthData } from '../types/auth-data.ts';
 import { UserData } from '../types/user.ts';
 import { AuthorizationStatus } from '../const.ts';
+import { saveToken } from '../services/token.ts';
 
 export enum APIRoute {
   FilmsService = '/wtw/films',
@@ -63,9 +64,7 @@ export const loginAction = createAsyncThunk<
     const {
       data: { token },
     } = await api.post<UserData>(APIRoute.Login, { email, password });
-    // saveToken(token);
-    // eslint-disable-next-line no-console
-    console.log(token);
+    saveToken(token);
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
     // dispatch(redirectToRoute(AppRoute.Result));
   }
