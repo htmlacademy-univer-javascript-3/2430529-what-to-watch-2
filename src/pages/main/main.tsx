@@ -9,6 +9,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ALL_GENRES } from '../../types/genres';
 import ShowMore from '../../components/show-more/show-more';
 import Spinner from '../../components/spinner/spinner';
+import UserBlock from '../../components/user-block/user-block';
 
 type Props = {
   promoFilm: Film;
@@ -51,21 +52,7 @@ export default function MainPage({ promoFilm, films }: Props) {
         <header className="page-header film-card__head">
           <Logo />
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock />
         </header>
 
         <div className="film-card__wrap">
