@@ -14,6 +14,9 @@ import { promoFilm } from '../../mocks/films';
 
 export default function App() {
   const films = useSelector((state: RootState) => state.films);
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.authorizationStatus
+  );
 
   return (
     <BrowserRouter>
@@ -26,7 +29,7 @@ export default function App() {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute>
+            <PrivateRoute authorizationStatus={authorizationStatus}>
               <MyListPage films={films} />
             </PrivateRoute>
           }

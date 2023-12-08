@@ -66,6 +66,5 @@ export const loginAction = createAsyncThunk<
     } = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(token);
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
-    // dispatch(redirectToRoute(AppRoute.Result));
   }
 );
