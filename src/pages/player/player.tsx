@@ -10,7 +10,7 @@ export default function PlayerPage({film}: Props) {
       <video
         src="#"
         className="player__video"
-        poster={film.posterImage}
+        poster={film.previewImage}
       >
       </video>
 

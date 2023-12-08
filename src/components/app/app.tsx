@@ -11,9 +11,19 @@ import PrivateRoute from '../private-route/private-route';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { promoFilm } from '../../mocks/films';
+import Spinner from '../spinner/spinner';
 
 export default function App() {
   const films = useSelector((state: RootState) => state.films);
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.authorizationStatus
+  );
+
+  const isLoading = useSelector((state: RootState) => state.isLoading);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <BrowserRouter>
@@ -26,7 +36,7 @@ export default function App() {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute authorizationStatus={authorizationStatus}>
               <MyListPage films={films} />
             </PrivateRoute>
           }

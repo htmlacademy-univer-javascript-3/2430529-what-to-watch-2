@@ -13,7 +13,7 @@ export default function AddReviewPage({ film }: Props) {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.posterImage} alt={film.name} />
+          <img src={film.previewImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -61,7 +61,7 @@ export default function AddReviewPage({ film }: Props) {
 
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={film.posterImage}
+            src={film.previewImage}
             alt={film.name}
             width="218"
             height="327"
