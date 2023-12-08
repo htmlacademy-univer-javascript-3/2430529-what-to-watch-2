@@ -14,9 +14,9 @@ import { AuthorizationStatus } from '../const.ts';
 import { dropToken, saveToken } from '../services/token.ts';
 
 export enum APIRoute {
-  FilmsService = '/wtw/films',
-  Login = '/wtw/login',
-  Logout = '/wtw/logout',
+  FilmsService = '/films',
+  Login = '/login',
+  Logout = '/logout',
 }
 
 export const fetchFilmsAction = createAsyncThunk<

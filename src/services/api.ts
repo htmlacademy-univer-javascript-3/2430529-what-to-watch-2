@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { getToken } from './token';
 
-const BASE_URL = 'https://13.design.pages.academy';
+const BASE_URL = 'https://13.design.pages.academy/wtw';
 const REQUEST_TIMEOUT = 5000;
 
 export const createAPI = (): AxiosInstance => {
