@@ -4,10 +4,12 @@ import {
   loadFilms,
   setAuthorizationStatus,
   setGenre,
+  setUser,
   setisLoadingFilms,
 } from './action';
 import { ALL_GENRES } from '../types/genres';
 import { AuthorizationStatus } from '../const';
+import { UserData } from '../types/user';
 // import { films } from '../mocks/films';
 
 type InitialState = {
@@ -15,6 +17,7 @@ type InitialState = {
   films: ShortFilm[];
   isLoading: boolean;
   authorizationStatus: AuthorizationStatus;
+  user: UserData | null;
 };
 
 const initialState: InitialState = {
@@ -22,6 +25,7 @@ const initialState: InitialState = {
   films: [],
   isLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  user: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -36,5 +40,8 @@ export const reducer = createReducer(initialState, (builder) => {
   });
   builder.addCase(setAuthorizationStatus, (state, action) => {
     state.authorizationStatus = action.payload;
+  });
+  builder.addCase(setUser, (state, action) => {
+    state.user = action.payload;
   });
 });

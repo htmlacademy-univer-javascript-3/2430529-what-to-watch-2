@@ -5,12 +5,13 @@ import { Films } from '../types/films.ts';
 import {
   loadFilms,
   setAuthorizationStatus,
+  setUser,
   setisLoadingFilms,
 } from './action.ts';
 import { AuthData } from '../types/auth-data.ts';
 import { UserData } from '../types/user.ts';
 import { AuthorizationStatus } from '../const.ts';
-import { saveToken } from '../services/token.ts';
+import { dropToken, saveToken } from '../services/token.ts';
 
 export enum APIRoute {
   FilmsService = '/wtw/films',
@@ -61,10 +62,26 @@ export const loginAction = createAsyncThunk<
 >(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    const {
-      data: { token },
-    } = await api.post<UserData>(APIRoute.Login, { email, password });
-    saveToken(token);
+    const { data } = await api.post<UserData>(APIRoute.Login, {
+      email,
+      password,
+    });
+    saveToken(data.token);
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+    dispatch(setUser(data));
   }
 );
+
+export const logoutAction = createAsyncThunk<
+  void,
+  undefined,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('user/logout', async (_arg, { dispatch, extra: api }) => {
+  await api.delete(APIRoute.Logout);
+  dropToken();
+  dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+});

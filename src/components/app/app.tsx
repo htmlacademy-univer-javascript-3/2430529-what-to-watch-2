@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from '../../pages/main/main';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import SingInPage from '../../pages/sign-in/sign-in';
 import MyListPage from '../../pages/my-list/my-list';
 import FilmPage from '../../pages/film/film';
@@ -11,12 +11,19 @@ import PrivateRoute from '../private-route/private-route';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { promoFilm } from '../../mocks/films';
+import Spinner from '../spinner/spinner';
 
 export default function App() {
   const films = useSelector((state: RootState) => state.films);
   const authorizationStatus = useSelector(
     (state: RootState) => state.authorizationStatus
   );
+
+  const isLoading = useSelector((state: RootState) => state.isLoading);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <BrowserRouter>
