@@ -14,17 +14,19 @@ export default function ReviewItem({ review }: Props) {
   return (
     <div className="review">
       <blockquote className="review__quote">
-        <p className="review__text">{review.description}</p>
+        <p className="review__text">{review.comment}</p>
 
         <footer className="review__details">
-          <cite className="review__author">{review.name}</cite>
+          <cite className="review__author">{review.user}</cite>
           <time className="review__date" dateTime={review.date}>
             {date}
           </time>
         </footer>
       </blockquote>
 
-      <div className="review__rating">{review.score.toFixed(1)}</div>
+      <div className="review__rating">
+        {review.rating ? review.rating.toFixed(1) : 0}
+      </div>
     </div>
   );
 }

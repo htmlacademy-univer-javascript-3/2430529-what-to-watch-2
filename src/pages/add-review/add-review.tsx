@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
-import { ShortFilm } from '../../types/films';
+import { PromoFilm } from '../../types/films';
 import { AppRoute } from '../../const';
 import CommentForm from '../../components/comment-form/comment-form';
 
 type Props = {
-  film: ShortFilm;
+  film: PromoFilm;
 };
 
 export default function AddReviewPage({ film }: Props) {
@@ -13,7 +13,7 @@ export default function AddReviewPage({ film }: Props) {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.previewImage} alt={film.name} />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -61,7 +61,7 @@ export default function AddReviewPage({ film }: Props) {
 
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={film.previewImage}
+            src={film.posterImage}
             alt={film.name}
             width="218"
             height="327"

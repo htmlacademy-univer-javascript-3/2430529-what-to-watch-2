@@ -1,16 +1,16 @@
-import { ShortFilm } from '../../types/films';
+import { PromoFilm } from '../../types/films';
 
 type Props = {
-  film: ShortFilm;
+  film: PromoFilm;
 };
 
-export default function PlayerPage({film}: Props) {
+export default function PlayerPage({ film }: Props) {
   return (
     <div className="player">
       <video
         src="#"
         className="player__video"
-        poster={film.previewImage}
+        poster={film.posterImage}
       >
       </video>
 
