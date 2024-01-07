@@ -5,3 +5,9 @@ export type Review = {
   date: string;
   rating: number;
 };
+
+export type CommentForm = {
+  id: string;
+  comment: string;
+  rating: number;
+};
