@@ -8,6 +8,7 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import { loginAction } from '../../store/api-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { ReducerName } from '../../store/reducer';
 
 function isLoginValid(loginRef: string | null) {
   return (
@@ -31,7 +32,7 @@ export default function SingInPage() {
   const navigate = useNavigate();
 
   const authorizationStatus = useSelector(
-    (state: RootState) => state.authorizationStatus
+    (state: RootState) => state[ReducerName.Authorzation].authorizationStatus
   );
 
   const loginRef = useRef<HTMLInputElement>(null);

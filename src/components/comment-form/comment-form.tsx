@@ -1,8 +1,14 @@
-import { ChangeEventHandler, MouseEventHandler, useState } from 'react';
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useState,
+} from 'react';
 import RatingInput from '../rating-input/rating-input';
 import { useDispatch } from 'react-redux';
 import { postCommentAction } from '../../store/api-actions';
 import { AppDispatch } from '../../types/state';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   filmId: string;
@@ -19,6 +25,11 @@ function isCommentFormValid(text: string, score: number) {
 
 export default function CommentForm({ filmId }: Props) {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const backToFilm = useCallback(
+    () => navigate(`/films/${filmId}`),
+    [filmId, navigate]
+  );
 
   const [commentText, setCommentText] = useState<string>('');
   const [rating, setRating] = useState(0);
@@ -38,6 +49,7 @@ export default function CommentForm({ filmId }: Props) {
         id: filmId,
         comment: commentText,
         rating: Number(rating),
+        backToFilm,
       })
     );
   };
