@@ -10,11 +10,11 @@ import NotFoundPage from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { promoFilm } from '../../mocks/films';
 import Spinner from '../spinner/spinner';
 
 export default function App() {
   const films = useSelector((state: RootState) => state.films);
+  const promo = useSelector((state: RootState) => state.promoFilm);
   const authorizationStatus = useSelector(
     (state: RootState) => state.authorizationStatus
   );
@@ -30,7 +30,7 @@ export default function App() {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage films={films} promoFilm={promoFilm} />}
+          element={<MainPage films={films} promoFilm={promo!} />}
         />
         <Route path={AppRoute.Login} element={<SingInPage />} />
         <Route
@@ -41,18 +41,9 @@ export default function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path={AppRoute.Film}
-          element={<FilmPage film={promoFilm} likeThis={films} />}
-        />
-        <Route
-          path={AppRoute.AddReview}
-          element={<AddReviewPage film={promoFilm} />}
-        />
-        <Route
-          path={AppRoute.Player}
-          element={<PlayerPage film={promoFilm} />}
-        />
+        <Route path={AppRoute.Film} element={<FilmPage />} />
+        <Route path={AppRoute.AddReview} element={<AddReviewPage />} />
+        <Route path={AppRoute.Player} element={<PlayerPage film={promo!} />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

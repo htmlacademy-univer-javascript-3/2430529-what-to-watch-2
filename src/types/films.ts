@@ -1,21 +1,36 @@
 export type ShortFilm = {
-  id: number;
+  id: string;
   name: string;
   previewImage: string;
   previewVideoLink: string;
   genre: string;
 };
 
-export type Film = ShortFilm & {
+export type PromoFilm = {
+  id: string;
+  name: string;
+  posterImage: string;
   backgroundImage: string;
+  videoLink: string;
+  genre: string;
+  released: number;
+  isFavorite: boolean;
+};
+
+export type Film = {
+  id: string;
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  backgroundColor: string;
   videoLink: string;
   description: string;
   rating: number;
-  runTime: number;
-  genre: string;
   scoresCount: number;
   director: string;
   starring: string[];
+  runTime: number;
+  genre: string;
   released: number;
   isFavorite: boolean;
 };

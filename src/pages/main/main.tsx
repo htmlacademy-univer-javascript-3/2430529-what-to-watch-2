@@ -3,7 +3,7 @@ import Footer from '../../components/footer/footer';
 import ListFilms from '../../components/list-films/list-films';
 import ListGenres from '../../components/list-genres/list-genres';
 import Logo from '../../components/logo/logo';
-import { ShortFilm, Film } from '../../types/films';
+import { ShortFilm, PromoFilm } from '../../types/films';
 import { RootState } from '../../store';
 import { useEffect, useMemo, useState } from 'react';
 import { ALL_GENRES } from '../../types/genres';
@@ -12,7 +12,7 @@ import Spinner from '../../components/spinner/spinner';
 import UserBlock from '../../components/user-block/user-block';
 
 type Props = {
-  promoFilm: Film;
+  promoFilm: PromoFilm;
   films: ShortFilm[];
 };
 
@@ -44,7 +44,7 @@ export default function MainPage({ promoFilm, films }: Props) {
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.previewImage} alt={promoFilm.name} />
+          <img src={promoFilm.backgroundImage} alt={promoFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -59,8 +59,8 @@ export default function MainPage({ promoFilm, films }: Props) {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src={promoFilm.previewImage}
-                alt="The Grand Budapest Hotel poster"
+                src={promoFilm.posterImage}
+                alt={promoFilm.name}
                 width="218"
                 height="327"
               />

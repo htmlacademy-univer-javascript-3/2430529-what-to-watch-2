@@ -4,7 +4,11 @@ import App from './components/app/app';
 
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { checkAuthAction, fetchFilmsAction } from './store/api-actions';
+import {
+  checkAuthAction,
+  fetchFilmsAction,
+  fetchPromoFilmAction,
+} from './store/api-actions';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +16,7 @@ const root = ReactDOM.createRoot(
 
 store.dispatch(fetchFilmsAction());
 store.dispatch(checkAuthAction());
+store.dispatch(fetchPromoFilmAction());
 
 root.render(
   <React.StrictMode>

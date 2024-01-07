@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 type Props = {
   onChange: (value: number) => void;
 };
@@ -15,7 +17,7 @@ export default function RatingInput({ onChange }: Props) {
     <div className="rating">
       <div className="rating__stars">
         {ratingStar.map((rating) => (
-          <>
+          <Fragment key={`star-rating-${rating}`}>
             <input
               className="rating__input"
               id={`star-${rating}`}
@@ -27,7 +29,7 @@ export default function RatingInput({ onChange }: Props) {
             <label className="rating__label" htmlFor={`star-${rating}`}>
               Rating {rating}
             </label>
-          </>
+          </Fragment>
         ))}
       </div>
     </div>

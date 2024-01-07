@@ -1,7 +1,13 @@
 export type Review = {
   id: number;
-  name: string;
-  description: string;
+  user: string;
+  comment: string;
   date: string;
-  score: number;
+  rating: number;
+};
+
+export type CommentForm = {
+  id: string;
+  comment: string;
+  rating: number;
 };

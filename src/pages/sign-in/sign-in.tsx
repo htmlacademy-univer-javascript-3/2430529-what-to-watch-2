@@ -13,7 +13,7 @@ function isLoginValid(loginRef: string | null) {
   return (
     loginRef !== null &&
     loginRef !== '' &&
-    loginRef.match(/[\w/.]+@[a-z]+.[a-z]+/i)
+    loginRef.match(/^[\w/.]+@[a-z]+.[a-z]+$/i)
   );
 }
 
