@@ -35,7 +35,7 @@ const initialState: MainReducerState = {
 };
 
 export const mainReducer = createSlice({
-  name: ReducerName.Main,
+  name: 'mainReducer',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -74,16 +74,16 @@ export const mainReducer = createSlice({
       .addCase(fetchPromoFilmAction.pending, (state) => {
         state.isPromoLoading = true;
       })
-      .addCase(setFavorite.fulfilled, (state, action) => {
-        if (state.promo && action.payload.id === state.promo.id) {
-          state.promo = action.payload;
-        }
-        state.favoriteCount += action.payload.isFavorite ? 1 : -1;
-      })
-      .addCase(logoutAction.fulfilled, (state) => {
-        state.favoriteFilms = [];
-        state.favoriteCount = 0;
-      })
+      //   .addCase(setFavorite.fulfilled, (state, action) => {
+      //     if (state.promo && action.payload.id === state.promo.id) {
+      //       state.promo = action.payload;
+      //     }
+      //     state.favoriteCount += action.payload.isFavorite ? 1 : -1;
+      //   })
+      //   .addCase(logoutAction.fulfilled, (state) => {
+      //     state.favoriteFilms = [];
+      //     state.favoriteCount = 0;
+      //   })
       .addCase(postCommentAction.fulfilled, (state, action) => {
         state.error = null;
         action.payload.backToFilm();

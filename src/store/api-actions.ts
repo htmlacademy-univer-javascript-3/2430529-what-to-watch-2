@@ -92,7 +92,7 @@ export const fetchReviews = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('data/fetchSimilarFilms', async ({ filmId: filmId }, { extra: api }) => {
+>('data/fetchReviews', async ({ filmId: filmId }, { extra: api }) => {
   const { data } = await api.get<Review[]>(
     `${APIRoute.ReviewService}${filmId}`
   );

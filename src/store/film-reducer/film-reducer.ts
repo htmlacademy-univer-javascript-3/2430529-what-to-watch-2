@@ -24,7 +24,7 @@ const initialState: FilmReducerState = {
 };
 
 export const filmReducer = createSlice({
-  name: ReducerName.Films,
+  name: 'filmReducer',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

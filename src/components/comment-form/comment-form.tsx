@@ -1,9 +1,4 @@
-import {
-  ChangeEventHandler,
-  MouseEventHandler,
-  useCallback,
-  useState,
-} from 'react';
+import { ChangeEventHandler, useCallback, useState } from 'react';
 import RatingInput from '../rating-input/rating-input';
 import { useDispatch } from 'react-redux';
 import { postCommentAction } from '../../store/api-actions';
@@ -42,20 +37,23 @@ export default function CommentForm({ filmId }: Props) {
     setRating(userRating);
   };
 
-  const postComment: MouseEventHandler = (event) => {
-    event.stopPropagation();
-    dispatch(
-      postCommentAction({
-        id: filmId,
-        comment: commentText,
-        rating: Number(rating),
-        backToFilm,
-      })
-    );
-  };
+  const handleSubmit = useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault();
+      dispatch(
+        postCommentAction({
+          id: filmId,
+          comment: commentText,
+          rating: Number(rating),
+          backToFilm,
+        })
+      );
+    },
+    [backToFilm, commentText, dispatch, filmId, rating]
+  );
 
   return (
-    <form className="add-review__htmlForm">
+    <form action="#" className="add-review__htmlForm" onSubmit={handleSubmit}>
       <RatingInput onChange={handleRatingChange} />
 
       <div className="add-review__text">
@@ -64,17 +62,15 @@ export default function CommentForm({ filmId }: Props) {
           name="review-text"
           id="review-text"
           placeholder="Review text"
+          value={commentText}
           onChange={handleTextareaChange}
           minLength={MIN_CHAR_LIMIT}
           maxLength={MAX_CHAR_LIMIT}
-        >
-          {commentText}
-        </textarea>
+        />
         <div className="add-review__submit">
           <button
             className="add-review__btn"
             type="submit"
-            onClick={postComment}
             disabled={!isCommentFormValid(commentText, rating)}
           >
             Post

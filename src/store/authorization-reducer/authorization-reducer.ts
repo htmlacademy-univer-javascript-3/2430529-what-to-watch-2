@@ -16,7 +16,7 @@ const initialState: AuthorizationReducerState = {
 };
 
 export const authorizationReducer = createSlice({
-  name: ReducerName.Authorzation,
+  name: 'authorizationReducer',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
