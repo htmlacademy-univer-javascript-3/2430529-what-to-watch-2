@@ -41,14 +41,8 @@ export default function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path={AppRoute.Film}
-          element={<FilmPage film={promo!} likeThis={films} />}
-        />
-        <Route
-          path={AppRoute.AddReview}
-          element={<AddReviewPage film={promo!} />}
-        />
+        <Route path={AppRoute.Film} element={<FilmPage />} />
+        <Route path={AppRoute.AddReview} element={<AddReviewPage />} />
         <Route path={AppRoute.Player} element={<PlayerPage film={promo!} />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>
