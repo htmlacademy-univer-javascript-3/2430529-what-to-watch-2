@@ -2,8 +2,7 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Action } from '@reduxjs/toolkit';
 import MockAdapter from 'axios-mock-adapter';
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import films from '../mocks/films';
-import reviews from '../mocks/reviews';
+
 import { createAPI } from '../services/api';
 import { State } from '../types/state';
 import {
@@ -20,6 +19,8 @@ import {
   postCommentAction,
 } from './api-actions';
 import { AuthData } from '../types/auth-data';
+import films from '../mocks/films';
+import reviews from '../mocks/reviews';
 
 describe('async actions', () => {
   const api = createAPI();
@@ -120,7 +121,7 @@ describe('async actions', () => {
 
     const store = mockStore();
 
-    await store.dispatch(fetchFilmByIdAction('1'));
+    await store.dispatch(fetchFilmByIdAction({ filmId: '1' }));
 
     const actions = store.getActions().map(({ type }) => type);
 
@@ -135,7 +136,7 @@ describe('async actions', () => {
 
     const store = mockStore();
 
-    await store.dispatch(fetchSimilarFilmsAction('1'));
+    await store.dispatch(fetchSimilarFilmsAction({ filmId: '1' }));
 
     const actions = store.getActions().map(({ type }) => type);
 
@@ -150,7 +151,7 @@ describe('async actions', () => {
 
     const store = mockStore();
 
-    await store.dispatch(fetchReviews('1'));
+    await store.dispatch(fetchReviews({ filmId: '1' }));
 
     const actions = store.getActions().map(({ type }) => type);
 
@@ -162,14 +163,14 @@ describe('async actions', () => {
 
   it('POST /comments/{id}', async () => {
     const postData = {
-      filmId: '1',
+      id: '1',
       comment: 'comment',
       rating: 8,
       backToFilm: () => null,
     };
 
     mockAPI
-      .onPost(`/comments/${postData.filmId}`, {
+      .onPost(`/comments/${postData.id}`, {
         comment: postData.comment,
         rating: postData.rating,
       })

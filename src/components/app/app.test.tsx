@@ -11,6 +11,9 @@ import { ToastContainer } from 'react-toastify';
 import { createAPI } from '../../services/api';
 import { ReducerName } from '../../store/reducer';
 import { AuthorizationStatus } from '../../const';
+import films from '../../mocks/films';
+import { State } from '../../types/state';
+import { ALL_GENRES } from '../../types/genres';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -27,16 +30,15 @@ describe('logged in routing', () => {
       authorizationStatus: AuthorizationStatus.Auth,
       user: null,
     },
-    [ReducerName.Film]: {
+    [ReducerName.Films]: {
       film: mockFilm,
       reviews: [],
-      similar: [],
+      similarFilms: [],
       isLoading: false,
     },
     [ReducerName.Main]: {
       films: [mockFilm],
-      genreFilms: [],
-      currentGenre: Genre.DefaultGenre,
+      currentGenre: ALL_GENRES,
       isFilmsLoading: false,
       error: null,
       promo: mockFilm,
@@ -114,16 +116,15 @@ describe('not logged in routing', () => {
       authorizationStatus: AuthorizationStatus.NoAuth,
       user: null,
     },
-    [ReducerName.Film]: {
+    [ReducerName.Films]: {
       film: mockFilm,
       reviews: [],
-      similar: [],
+      similarFilms: [],
       isLoading: false,
     },
     [ReducerName.Main]: {
       films: [mockFilm],
-      genreFilms: [],
-      currentGenre: Genre.DefaultGenre,
+      currentGenre: ALL_GENRES,
       isFilmsLoading: false,
       error: null,
       promo: mockFilm,
