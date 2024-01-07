@@ -1,11 +1,11 @@
-import { PromoFilm } from '../../types/films';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { ReducerName } from '../../store/reducer';
+import NotFoundPage from '../not-found/not-found';
 
-type Props = {
-  film: PromoFilm;
-};
-
-export default function PlayerPage({ film }: Props) {
-  return (
+export default function PlayerPage() {
+  const film = useSelector((state: RootState) => state[ReducerName.Films].film);
+  return film ? (
     <div className="player">
       <video
         src="#"
@@ -52,5 +52,7 @@ export default function PlayerPage({ film }: Props) {
         </div>
       </div>
     </div>
+  ) : (
+    <NotFoundPage />
   );
 }

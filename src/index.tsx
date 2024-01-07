@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import {
   checkAuthAction,
+  fetchFavoriteFilms,
   fetchFilmsAction,
   fetchPromoFilmAction,
 } from './store/api-actions';
@@ -17,6 +18,7 @@ const root = ReactDOM.createRoot(
 store.dispatch(fetchFilmsAction());
 store.dispatch(checkAuthAction());
 store.dispatch(fetchPromoFilmAction());
+store.dispatch(fetchFavoriteFilms());
 
 root.render(
   <React.StrictMode>

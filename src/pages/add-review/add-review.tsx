@@ -9,6 +9,7 @@ import UserBlock from '../../components/user-block/user-block';
 import { fetchFilmByIdAction } from '../../store/api-actions';
 import { useEffect } from 'react';
 import { AppDispatch } from '../../types/state';
+import { ReducerName } from '../../store/reducer';
 
 export default function AddReviewPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,7 +21,7 @@ export default function AddReviewPage() {
     dispatch(fetchFilmByIdAction({ filmId }));
   }, [dispatch, filmId]);
 
-  const film = useSelector((state: RootState) => state.film);
+  const film = useSelector((state: RootState) => state[ReducerName.Films].film);
 
   //   const isFilmLoaded = filmData.isLoaded;
   //   const hasFilmError = filmData.hasError;

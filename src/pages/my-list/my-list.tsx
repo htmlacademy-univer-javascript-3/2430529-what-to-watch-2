@@ -1,14 +1,16 @@
+import { useSelector } from 'react-redux';
 import Footer from '../../components/footer/footer';
 import ListFilms from '../../components/list-films/list-films';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import { ShortFilm } from '../../types/films';
+import { RootState } from '../../store';
+import { ReducerName } from '../../store/reducer';
 
-type Props = {
-  films: ShortFilm[];
-};
+export default function MyListPage() {
+  const films = useSelector(
+    (state: RootState) => state[ReducerName.Main].favoriteFilms
+  );
 
-export default function MyListPage({ films }: Props) {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

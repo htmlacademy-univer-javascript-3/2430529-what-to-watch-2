@@ -21,6 +21,8 @@ export type Film = {
   id: string;
   name: string;
   posterImage: string;
+  previewImage: string;
+  previewVideoLink: string;
   backgroundImage: string;
   backgroundColor: string;
   videoLink: string;

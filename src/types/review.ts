@@ -10,4 +10,5 @@ export type CommentForm = {
   id: string;
   comment: string;
   rating: number;
+  backToFilm: () => void;
 };

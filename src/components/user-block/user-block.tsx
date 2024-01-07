@@ -4,14 +4,17 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import { Link } from 'react-router-dom';
 import { AppDispatch } from '../../types/state';
 import { logoutAction } from '../../store/api-actions';
+import { ReducerName } from '../../store/reducer';
 
 export default function UserBlock() {
   const dispatch = useDispatch<AppDispatch>();
 
   const authorizationStatus = useSelector(
-    (state: RootState) => state.authorizationStatus
+    (state: RootState) => state[ReducerName.Authorzation].authorizationStatus
   );
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector(
+    (state: RootState) => state[ReducerName.Authorzation].user
+  );
 
   const handleLogoutClick = () => {
     dispatch(logoutAction());
