@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ReducerName } from '../reducer';
 import {
   fetchFilmByIdAction,
   fetchReviews,

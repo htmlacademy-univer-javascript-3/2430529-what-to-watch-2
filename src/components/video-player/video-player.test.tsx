@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
-import VideoPlayer from './video-player';
+import { VideoPlayer } from '.';
+
 
 describe('VideoPlayer component', () => {
   const mockSrc = 'video.mp4';

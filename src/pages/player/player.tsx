@@ -1,4 +1,5 @@
-import { ONE_HUNDRED_PERCENT, usePlayer } from '../../hooks/use-player';
+import { ONE_HUNDRED_PERCENT } from '../../const';
+import { usePlayer } from '../../hooks/use-player';
 
 export function PlayerPage() {
   const {

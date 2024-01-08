@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { filmReducer } from './film-reducer/film-reducer';
-import { authorizationReducer } from './authorization-reducer/authorization-reducer';
-import { mainReducer } from './main-reducer/main-reducer';
+import { filmReducer } from './films/reducer';
+import { authorizationReducer } from './authorization/reducer';
+import { mainReducer } from './main/reducer';
 
 export const enum ReducerName {
   Authorzation = 'authorizationReducer',

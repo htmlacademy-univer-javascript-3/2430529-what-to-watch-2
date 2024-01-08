@@ -11,6 +11,8 @@ import ShowMore from '../../components/show-more/show-more';
 import Spinner from '../../components/spinner/spinner';
 import UserBlock from '../../components/user-block/user-block';
 import { ReducerName } from '../../store/reducer';
+import { PlayButton } from '../../components/play-button';
+import { MyListButton } from '../../components/my-list-button';
 
 const LIMIT_FILMS = 8;
 
@@ -81,25 +83,8 @@ export function MainPage() {
                 </p>
 
                 <div className="film-card__buttons">
-                  <button
-                    className="btn btn--play film-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <button
-                    className="btn btn--list film-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                    <span className="film-card__count">9</span>
-                  </button>
+                  <PlayButton filmId={promoFilm.id} />
+                  <MyListButton filmId={promoFilm.id} />
                 </div>
               </div>
             </div>

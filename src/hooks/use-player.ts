@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { ReducerName } from '../store/reducer';
+import { ONE_HUNDRED_PERCENT } from '../const';
 
 const POSITION_CORRECTION = 25;
-export const ONE_HUNDRED_PERCENT = 100;
 const SECONDS_IN_HOUR = 3600;
 const SECONDS_IN_MINUTE = 60;
 
