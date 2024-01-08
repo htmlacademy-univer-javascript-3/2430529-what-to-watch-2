@@ -6,7 +6,7 @@ import UserBlock from '../../components/user-block/user-block';
 import { RootState } from '../../store';
 import { ReducerName } from '../../store/reducer';
 
-export default function MyListPage() {
+export function MyListPage() {
   const films = useSelector(
     (state: RootState) => state[ReducerName.Main].favoriteFilms
   );

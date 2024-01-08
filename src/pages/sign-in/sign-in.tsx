@@ -27,7 +27,7 @@ function isPasswordValid(passwordRef: string | null) {
   );
 }
 
-export default function SingInPage() {
+export function SingInPage() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 

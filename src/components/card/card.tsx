@@ -1,25 +1,16 @@
 import { Link } from 'react-router-dom';
 import { ShortFilm } from '../../types/films';
 import { AppRoute } from '../../const';
-import VideoPlayer from '../video-player/video-player';
-import { useEffect, useState } from 'react';
+import { VideoPlayer } from '../video-player';
+import { memo, useState } from 'react';
+import './card.css';
 
 type Props = {
   film: ShortFilm;
 };
 
-export const Card = ({ film }: Props) => {
+export const Card = memo(({ film }: Props) => {
   const [isHover, setIsHover] = useState(false);
-  const [isPlay, setIsPlay] = useState(false);
-
-  useEffect(() => {
-    if (isHover) {
-      const timer = setTimeout(() => {
-        setIsPlay(true);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isHover]);
 
   const handleMouseOver = () => {
     setIsHover(true);
@@ -27,7 +18,6 @@ export const Card = ({ film }: Props) => {
 
   const handleMouseOut = () => {
     setIsHover(false);
-    setIsPlay(false);
   };
 
   return (
@@ -37,10 +27,13 @@ export const Card = ({ film }: Props) => {
       onMouseOut={handleMouseOut}
     >
       <div className="small-film-card__image">
-        <VideoPlayer
-          videoLink={isPlay ? film.previewVideoLink : ''}
-          poster={film.previewImage}
-        />
+        {isHover && (
+          <VideoPlayer
+            src={film.previewVideoLink}
+            preview={film.previewImage}
+          />
+        )}
+        {!isHover && <img src={film.previewImage} alt={film.name} />}
       </div>
       <h3 className="small-film-card__title">
         <Link
@@ -52,4 +45,6 @@ export const Card = ({ film }: Props) => {
       </h3>
     </article>
   );
-};
+});
+
+Card.displayName = 'Card';

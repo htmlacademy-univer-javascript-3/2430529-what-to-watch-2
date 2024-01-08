@@ -1,17 +1,34 @@
+import { useEffect, useRef } from 'react';
+
 type Props = {
-  videoLink: string;
-  poster: string;
+  src: string;
+  preview: string;
 };
 
-export default function VideoPlayer(props: Props) {
+const TIME_LIMIT = 1000;
+
+export function VideoPlayer({ src, preview }: Props) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.play();
+      }
+    }, TIME_LIMIT);
+  }, []);
+
   return (
     <video
-      src={props.videoLink}
-      poster={props.poster}
-      width="280"
-      height="175"
+      data-testid="video-player"
+      ref={videoRef}
+      src={src}
+      poster={preview}
+      className="player__video"
+      loop
       muted
-      autoPlay
-    />
+    >
+      <source src={src} type="video/mp4" />
+    </video>
   );
 }

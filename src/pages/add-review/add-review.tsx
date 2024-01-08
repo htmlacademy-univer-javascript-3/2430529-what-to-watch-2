@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import { AppDispatch } from '../../types/state';
 import { ReducerName } from '../../store/reducer';
 
-export default function AddReviewPage() {
+export function AddReviewPage() {
   const dispatch = useDispatch<AppDispatch>();
 
   const params = useParams();

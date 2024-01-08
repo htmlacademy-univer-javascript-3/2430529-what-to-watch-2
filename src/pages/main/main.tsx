@@ -17,7 +17,7 @@ const LIMIT_FILMS = 8;
 const getFilmsByGenre = (films: ShortFilm[], genre: string) =>
   genre === ALL_GENRES ? films : films.filter((film) => film.genre === genre);
 
-export default function MainPage() {
+export function MainPage() {
   const films = useSelector(
     (state: RootState) => state[ReducerName.Main].films
   );

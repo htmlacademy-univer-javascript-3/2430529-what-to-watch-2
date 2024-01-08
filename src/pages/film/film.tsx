@@ -20,9 +20,9 @@ import { AppDispatch } from '../../types/state';
 import Spinner from '../../components/spinner/spinner';
 
 import { ReducerName } from '../../store/reducer';
-import NotFoundPage from '../not-found/not-found';
+import { NotFoundPage } from '../not-found';
 
-export default function FilmPage() {
+export function FilmPage() {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
