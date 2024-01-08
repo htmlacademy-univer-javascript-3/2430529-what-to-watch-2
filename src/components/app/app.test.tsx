@@ -28,7 +28,7 @@ describe('logged in routing', () => {
   const store = mockStore({
     [ReducerName.Authorzation]: {
       authorizationStatus: AuthorizationStatus.Auth,
-      user: null,
+      user: { email: '', avatarUrl: '', name: '', token: '' },
     },
     [ReducerName.Films]: {
       film: mockFilm,

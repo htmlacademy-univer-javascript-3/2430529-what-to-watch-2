@@ -8,7 +8,7 @@ import {
 import { Film, ShortFilm } from '../../types/films';
 import { Review } from '../../types/review';
 
-type FilmReducerState = {
+export type FilmReducerState = {
   film: Film | null;
   reviews: Review[];
   similarFilms: ShortFilm[];
