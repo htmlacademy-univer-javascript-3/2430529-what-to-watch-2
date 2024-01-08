@@ -20,15 +20,15 @@ export const authorizationReducer = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(logoutAction.fulfilled, (state) => {
-        dropToken();
-        state.user = null;
-        state.authorizationStatus = AuthorizationStatus.NoAuth;
-      })
       .addCase(loginAction.fulfilled, (state, action) => {
         saveToken(action.payload.token);
         state.user = action.payload;
         state.authorizationStatus = AuthorizationStatus.Auth;
+      })
+      .addCase(logoutAction.fulfilled, (state) => {
+        dropToken();
+        state.user = null;
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(checkAuthAction.fulfilled, (state, action) => {
         state.user = action.payload;

@@ -24,7 +24,7 @@ import reviews from '../mocks/reviews';
 import { State } from './types';
 import { FilmStatus } from '../const';
 
-describe('async actions', () => {
+describe('Async actions', () => {
   const api = createAPI();
   const mockAPI = new MockAdapter(api);
   const middlewares = [thunk.withExtraArgument(api)];
