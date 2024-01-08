@@ -23,6 +23,7 @@ export function PlayerPage() {
         className="player__video"
         poster="img/player-poster.jpg"
         onTimeUpdate={handleTimeUpdate}
+        data-testid="video-player"
       />
       <button type="button" className="player__exit" onClick={handleExit}>
         Exit
@@ -52,6 +53,7 @@ export function PlayerPage() {
             type="button"
             className="player__play"
             onClick={handleTogglePlay}
+            data-testid="play-button"
           >
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref={isPlaying ? '#pause' : '#play-s'}></use>

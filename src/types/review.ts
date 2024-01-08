@@ -12,3 +12,8 @@ export type CommentForm = {
   rating: number;
   backToFilm: () => void;
 };
+
+export interface IAddReview {
+  data: Review;
+  backToFilm: () => void;
+}

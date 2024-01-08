@@ -6,7 +6,7 @@ import './style.css';
 import { Film } from '../../types/films';
 import { Review } from '../../types/review';
 
-enum TypeTab {
+export enum TypeTab {
   Overview = 'Overview',
   Details = 'Details',
   Reviews = 'Reviews',
@@ -30,6 +30,7 @@ export function Tabs({ film, reviews }: Props) {
               className={`film-nav__item ${
                 activeTab === el ? 'film-nav__item--active' : ''
               }`}
+              data-testid={`nav-btn-${el}`}
               onClick={() => setActiveTab(el)}
             >
               <a className="film-nav__link">{el}</a>

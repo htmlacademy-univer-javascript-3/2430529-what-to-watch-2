@@ -1,15 +1,17 @@
 import { render, screen } from '@testing-library/react';
-import { MyListButton } from '.';
 import { createAPI } from '../../services/api';
 import thunk from 'redux-thunk';
+import { getMockStore } from '../../mocks/mock-store';
+import { MemoryRouter } from 'react-router-dom';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { State } from '../../store/types';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
-import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { getMockStore } from '../../mocks/mock-store';
+
+import { ListGenres } from '.';
 import films from '../../mocks/films';
 import { AuthorizationStatus } from '../../const';
+import { ALL_GENRES } from '../../types/genres';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -18,24 +20,22 @@ const mockStore = configureMockStore<
   Action,
   ThunkDispatch<State, typeof api, Action>
 >(middlewares);
+
 const mockFilm = films[0];
 
-describe('Component: MyListButton', () => {
+describe('Component: ListGenres', () => {
   const store = mockStore(getMockStore(AuthorizationStatus.Auth));
 
   const fakeApp = (
     <Provider store={store}>
       <MemoryRouter>
-        <MyListButton filmId={mockFilm.id} />
+        <ListGenres films={films} />
       </MemoryRouter>
     </Provider>
   );
-
-  it('should render the button with given children and className', () => {
-    const expectedText = 'My list';
+  it('should render genres correctly', () => {
     render(fakeApp);
-
-    expect(screen.getByText(expectedText)).toBeInTheDocument();
-    expect(screen.getByText(1)).toBeInTheDocument();
+    expect(screen.getByText(mockFilm.genre)).toBeInTheDocument();
+    expect(screen.getByText(ALL_GENRES)).toBeInTheDocument();
   });
 });

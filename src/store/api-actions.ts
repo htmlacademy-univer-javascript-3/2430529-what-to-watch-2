@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state.ts';
+
 import { AxiosInstance } from 'axios';
 import { Film, Films, ShortFilm } from '../types/films.ts';
 import { AuthData } from '../types/auth-data.ts';
 import { UserData } from '../types/user.ts';
 
-import { CommentForm, Review } from '../types/review.ts';
+import { CommentForm, IAddReview, Review } from '../types/review.ts';
+import { AppDispatch, State } from './types.ts';
 
 export enum APIRoute {
   FilmsService = '/films',
@@ -113,11 +114,6 @@ export const setFavorite = createAsyncThunk<
   );
   return data;
 });
-
-export interface IAddReview {
-  data: Review;
-  backToFilm: () => void;
-}
 
 export const postCommentAction = createAsyncThunk<
   IAddReview,

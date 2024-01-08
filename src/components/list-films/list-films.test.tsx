@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { Card } from '.';
+import { ListFilms } from '.';
 
-describe('Component: FilmCard', () => {
+describe('Component: ListFilms', () => {
   const filmData = {
     genre: 'Drama',
     id: '12345',
@@ -11,10 +11,10 @@ describe('Component: FilmCard', () => {
     previewVideoLink: '/path/to/preview.mp4',
   };
 
-  it('should render film card with specified data', () => {
+  it('should render list film card with specified data', () => {
     const { getByText, getByAltText } = render(
       <BrowserRouter>
-        <Card film={filmData} />
+        <ListFilms films={[filmData]} />
       </BrowserRouter>
     );
 

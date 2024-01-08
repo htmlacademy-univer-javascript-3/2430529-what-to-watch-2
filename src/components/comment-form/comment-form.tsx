@@ -62,6 +62,7 @@ export function CommentForm({ filmId }: Props) {
           className="add-review__textarea"
           name="review-text"
           id="review-text"
+          data-testid="review-text"
           placeholder="Review text"
           value={commentText}
           onChange={handleTextareaChange}

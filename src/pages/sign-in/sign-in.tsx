@@ -92,6 +92,7 @@ export function SingInPage() {
                 name="user-email"
                 id="user-email"
                 ref={loginRef}
+                data-testid="login"
               />
               <label
                 className="sign-in__label visually-hidden"
@@ -108,6 +109,7 @@ export function SingInPage() {
                 name="user-password"
                 id="user-password"
                 ref={passwordRef}
+                data-testid="password"
               />
               <label
                 className="sign-in__label visually-hidden"

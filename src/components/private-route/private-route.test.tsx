@@ -8,8 +8,8 @@ import { PrivateRoute } from './private-route';
 import { createAPI } from '../../services/api';
 
 import { ReducerName } from '../../store/reducer';
-import { AuthorizationStatus } from '../../const';
 import { State } from '../../store/types';
+import { AuthorizationStatus } from '../../const';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];

@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
-import { MyListButton } from '.';
 import { createAPI } from '../../services/api';
 import thunk from 'redux-thunk';
+import { getMockStore } from '../../mocks/mock-store';
+import { MyListPage } from '.';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { State } from '../../store/types';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
-import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { getMockStore } from '../../mocks/mock-store';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import films from '../../mocks/films';
-import { AuthorizationStatus } from '../../const';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -20,22 +20,29 @@ const mockStore = configureMockStore<
 >(middlewares);
 const mockFilm = films[0];
 
-describe('Component: MyListButton', () => {
+describe('Page: MyListPage', () => {
   const store = mockStore(getMockStore(AuthorizationStatus.Auth));
+
+  const routes = [`${AppRoute.MyList}`];
 
   const fakeApp = (
     <Provider store={store}>
-      <MemoryRouter>
-        <MyListButton filmId={mockFilm.id} />
+      <MemoryRouter initialEntries={routes}>
+        <Routes>
+          <Route path={AppRoute.MyList} element={<MyListPage />} />
+        </Routes>
       </MemoryRouter>
     </Provider>
   );
 
-  it('should render the button with given children and className', () => {
-    const expectedText = 'My list';
+  it('should render MyListPage correctly', () => {
     render(fakeApp);
 
-    expect(screen.getByText(expectedText)).toBeInTheDocument();
-    expect(screen.getByText(1)).toBeInTheDocument();
+    const favoriteNameOfFilm = screen.getByText(mockFilm.name);
+    expect(favoriteNameOfFilm).toBeInTheDocument();
+
+    const favoriteCountOfFilm = screen.getByText([mockFilm].length);
+    expect(favoriteCountOfFilm).toBeInTheDocument();
   });
+
 });
