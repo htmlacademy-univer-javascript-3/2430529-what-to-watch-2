@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { AuthorizationSelector } from '../../store/authorization/selectors';
@@ -18,7 +18,10 @@ export function MyListButton(props: Props) {
   const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
   const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
 
-  const isFavoriteFilm = favoriteFilms?.find((film) => film.id === filmId);
+  const isFavoriteFilm = useMemo(
+    () => favoriteFilms && favoriteFilms.find((film) => film.id === filmId),
+    [favoriteFilms, filmId]
+  );
 
   const favoriteCount = useAppSelector(MainSelector.favoriteCount);
 
@@ -35,7 +38,7 @@ export function MyListButton(props: Props) {
   }, [dispatch, isAuthorized]);
 
   const handleClick = useCallback(() => {
-    dispatch(setFavorite({ status: Boolean(newStatusOfFilm), filmId }));
+    dispatch(setFavorite({ status: newStatusOfFilm, filmId }));
   }, [dispatch, newStatusOfFilm, filmId]);
 
   if (!isAuthorized) {
@@ -48,9 +51,16 @@ export function MyListButton(props: Props) {
       type="button"
       onClick={handleClick}
     >
-      <svg viewBox="0 0 19 20" width="19" height="20">
-        <use xlinkHref={isFavoriteFilm ? '#in-list' : '#add'}></use>
-      </svg>
+      {isFavoriteFilm ? (
+        <svg viewBox="0 0 19 20" width="19" height="20">
+          <use xlinkHref={'#in-list'}></use>
+        </svg>
+      ) : (
+        <svg viewBox="0 0 19 20" width="19" height="20">
+          <use xlinkHref={'#add'}></use>
+        </svg>
+      )}
+
       <span>My list</span>
       {favoriteFilms !== null && (
         <span className="film-card__count">{favoriteCount}</span>

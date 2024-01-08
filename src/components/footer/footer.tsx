@@ -1,6 +1,6 @@
-import Logo from '../logo/logo';
+import { Logo } from '../logo';
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="page-footer">
       <Logo dark />

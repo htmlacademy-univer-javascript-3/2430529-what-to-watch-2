@@ -10,9 +10,9 @@ type Props = {
 
 export function PrivateRoute({ children }: PropsWithChildren<Props>) {
   const authorizationStatus = useAppSelector(AuthorizationSelector.status);
-  return authorizationStatus === AuthorizationStatus.Auth ? (
-    children
-  ) : (
+  return authorizationStatus === AuthorizationStatus.NoAuth ? (
     <Navigate to={AppRoute.Login} />
+  ) : (
+    children
   );
 }

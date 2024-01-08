@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import PrivateRoute from '../private-route/private-route';
+
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ReducerName } from '../../store/reducer';
@@ -14,6 +14,7 @@ import { FilmPage } from '../../pages/film';
 import { AddReviewPage } from '../../pages/add-review';
 import { PlayerPage } from '../../pages/player';
 import { NotFoundPage } from '../../pages/not-found';
+import { PrivateRoute } from '../private-route';
 
 export default function App() {
   const error = useSelector(
@@ -39,7 +40,14 @@ export default function App() {
           }
         />
         <Route path={AppRoute.Film} element={<FilmPage />} />
-        <Route path={AppRoute.AddReview} element={<AddReviewPage />} />
+        <Route
+          path={AppRoute.AddReview}
+          element={
+            <PrivateRoute>
+              <AddReviewPage />
+            </PrivateRoute>
+          }
+        />
         <Route path={AppRoute.Player} element={<PlayerPage />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>

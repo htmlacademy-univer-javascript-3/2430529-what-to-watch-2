@@ -1,15 +1,21 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import Footer from '../../components/footer/footer';
 import ListFilms from '../../components/list-films/list-films';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import { RootState } from '../../store';
-import { ReducerName } from '../../store/reducer';
+import { fetchFavoriteFilms } from '../../store/api-actions';
+
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { MainSelector } from '../../store/main/selector';
 
 export function MyListPage() {
-  const films = useSelector(
-    (state: RootState) => state[ReducerName.Main].favoriteFilms
-  );
+  const favoriteCount = useAppSelector(MainSelector.favoriteCount);
+  const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchFavoriteFilms());
+  }, [dispatch]);
 
   return (
     <div className="user-page">
@@ -17,7 +23,7 @@ export function MyListPage() {
         <Logo />
 
         <h1 className="page-title user-page__title">
-          My list <span className="user-page__film-count">{films.length}</span>
+          My list <span className="user-page__film-count">{favoriteCount}</span>
         </h1>
         <UserBlock />
       </header>
@@ -25,7 +31,7 @@ export function MyListPage() {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <ListFilms films={films} />
+        <ListFilms films={favoriteFilms} />
       </section>
 
       <Footer />

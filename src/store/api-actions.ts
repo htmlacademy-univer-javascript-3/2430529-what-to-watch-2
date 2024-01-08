@@ -101,7 +101,7 @@ export const fetchReviews = createAsyncThunk<
 
 export const setFavorite = createAsyncThunk<
   Film,
-  { status: boolean; filmId: string },
+  { status: number; filmId: string },
   {
     dispatch: AppDispatch;
     state: State;
@@ -109,7 +109,7 @@ export const setFavorite = createAsyncThunk<
   }
 >('/favorite/id/status', async ({ status, filmId }, { extra: api }) => {
   const { data } = await api.post<Film>(
-    `${APIRoute.Favorite}/${filmId}/${status ? 1 : 0}`
+    `${APIRoute.Favorite}/${filmId}/${status}`
   );
   return data;
 });

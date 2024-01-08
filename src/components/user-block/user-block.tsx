@@ -1,20 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { Link } from 'react-router-dom';
-import { AppDispatch } from '../../types/state';
+
 import { logoutAction } from '../../store/api-actions';
-import { ReducerName } from '../../store/reducer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { AuthorizationSelector } from '../../store/authorization/selectors';
 
-export default function UserBlock() {
-  const dispatch = useDispatch<AppDispatch>();
+export function UserBlock() {
+  const dispatch = useAppDispatch();
 
-  const authorizationStatus = useSelector(
-    (state: RootState) => state[ReducerName.Authorzation].authorizationStatus
-  );
-  const user = useSelector(
-    (state: RootState) => state[ReducerName.Authorzation].user
-  );
+  const authorizationStatus = useAppSelector(AuthorizationSelector.status);
+  const user = useAppSelector(AuthorizationSelector.user);
 
   const handleLogoutClick = () => {
     dispatch(logoutAction());
@@ -24,7 +19,14 @@ export default function UserBlock() {
     <ul className="user-block">
       <li className="user-block__item">
         <div className="user-block__avatar">
-          <img src={user?.avatarUrl} alt={user?.name} width="63" height="63" />
+          <Link to={AppRoute.MyList}>
+            <img
+              src={user?.avatarUrl}
+              alt={user?.name}
+              width="63"
+              height="63"
+            />
+          </Link>
         </div>
       </li>
       <li className="user-block__item">

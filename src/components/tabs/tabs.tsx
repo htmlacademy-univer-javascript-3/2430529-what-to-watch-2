@@ -17,7 +17,7 @@ type Props = {
   reviews: Review[];
 };
 
-export default function Tabs({ film, reviews }: Props) {
+export function Tabs({ film, reviews }: Props) {
   const [activeTab, setActiveTab] = useState(TypeTab.Overview);
 
   return (

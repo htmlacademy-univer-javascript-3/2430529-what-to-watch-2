@@ -18,7 +18,7 @@ const getArrayOfUniqueGenres = (films: ShortFilm[]) => {
   return sets.map((el, i) => ({ id: i, title: el as GenresEnum }));
 };
 
-export default function ListGenres({ films }: Props) {
+export function ListGenres({ films }: Props) {
   const dispatch = useDispatch();
   const storeGenre = useSelector(
     (state: RootState) => state[ReducerName.Main].currentGenre
