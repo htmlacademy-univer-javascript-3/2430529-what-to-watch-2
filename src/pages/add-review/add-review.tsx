@@ -1,14 +1,13 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
-import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
-
-import UserBlock from '../../components/user-block/user-block';
 import { fetchFilmByIdAction } from '../../store/api-actions';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { FilmsSelector } from '../../store/films/selector';
 import { NotFoundPage } from '../not-found';
 import { CommentForm } from '../../components/comment-form';
+import { Logo } from '../../components/logo';
+import { UserBlock } from '../../components/user-block';
 
 export function AddReviewPage() {
   const dispatch = useAppDispatch();

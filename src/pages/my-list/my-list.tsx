@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
-import Footer from '../../components/footer/footer';
-import ListFilms from '../../components/list-films/list-films';
-import Logo from '../../components/logo/logo';
-import UserBlock from '../../components/user-block/user-block';
+
 import { fetchFavoriteFilms } from '../../store/api-actions';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { MainSelector } from '../../store/main/selector';
+import { Logo } from '../../components/logo';
+import { UserBlock } from '../../components/user-block';
+import { ListFilms } from '../../components/list-films';
+import { Footer } from '../../components/footer';
 
 export function MyListPage() {
   const favoriteCount = useAppSelector(MainSelector.favoriteCount);

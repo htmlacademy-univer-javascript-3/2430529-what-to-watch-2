@@ -1,14 +1,11 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import Footer from '../../components/footer/footer';
-import Logo from '../../components/logo/logo';
 import { useNavigate } from 'react-router-dom';
-import { AppDispatch } from '../../types/state';
-
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { loginAction } from '../../store/api-actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { ReducerName } from '../../store/reducer';
+import { Logo } from '../../components/logo';
+import { Footer } from '../../components/footer';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { AuthorizationSelector } from '../../store/authorization/selectors';
 
 function isLoginValid(loginRef: string | null) {
   return (
@@ -28,12 +25,10 @@ function isPasswordValid(passwordRef: string | null) {
 }
 
 export function SingInPage() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const authorizationStatus = useSelector(
-    (state: RootState) => state[ReducerName.Authorzation].authorizationStatus
-  );
+  const authorizationStatus = useAppSelector(AuthorizationSelector.status);
 
   const loginRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);

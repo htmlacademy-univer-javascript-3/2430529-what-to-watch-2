@@ -6,7 +6,7 @@ import { RootState } from '../../store';
 import { ReducerName } from '../../store/reducer';
 import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import ScrollToTop from '../scroll-to-top/scroll-to-top';
+
 import { MainPage } from '../../pages/main';
 import { SingInPage } from '../../pages/sign-in';
 import { MyListPage } from '../../pages/my-list';
@@ -15,6 +15,7 @@ import { AddReviewPage } from '../../pages/add-review';
 import { PlayerPage } from '../../pages/player';
 import { NotFoundPage } from '../../pages/not-found';
 import { PrivateRoute } from '../private-route';
+import { ScrollToTop } from '../scroll-to-top';
 
 export default function App() {
   const error = useSelector(

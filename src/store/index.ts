@@ -11,7 +11,7 @@ export const store = configureStore({
       thunk: {
         extraArgument: api,
       },
-    }), //.concat(redirect),
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
