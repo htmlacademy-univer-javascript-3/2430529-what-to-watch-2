@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+
 import { AuthorizationSelector } from '../../store/authorization/selectors';
 import { MainSelector } from '../../store/main/selector';
 import { AuthorizationStatus, FilmStatus } from '../../const';
 import { fetchFavoriteFilms, setFavorite } from '../../store/api-actions';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 type Props = {
   filmId: string;
@@ -13,6 +14,7 @@ type Props = {
 export function MyListButton(props: Props) {
   const { filmId } = props;
 
+  const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(AuthorizationSelector.status);
 
   const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
@@ -28,8 +30,6 @@ export function MyListButton(props: Props) {
   const newStatusOfFilm = isFavoriteFilm
     ? FilmStatus.deleteFromFavorite
     : FilmStatus.addToFavorite;
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isAuthorized) {

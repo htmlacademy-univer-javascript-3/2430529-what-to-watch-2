@@ -4,7 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 
 import { createAPI } from '../services/api';
-import { State } from '../types/state';
+
 import {
   setFavorite,
   checkAuthAction,
@@ -21,6 +21,8 @@ import {
 import { AuthData } from '../types/auth-data';
 import films from '../mocks/films';
 import reviews from '../mocks/reviews';
+import { State } from './types';
+import { FilmStatus } from '../const';
 
 describe('async actions', () => {
   const api = createAPI();
@@ -205,8 +207,8 @@ describe('async actions', () => {
 
   it('POST /favorite/{filmId}/{status}', async () => {
     const postData = {
+      status: FilmStatus.addToFavorite,
       filmId: '1',
-      status: true,
     };
 
     mockAPI.onPost('/favorite/1/1').reply(200);
