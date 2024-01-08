@@ -6,9 +6,10 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 
 import { PrivateRoute } from './private-route';
 import { createAPI } from '../../services/api';
-import { State } from '../../types/state';
+
 import { ReducerName } from '../../store/reducer';
 import { AuthorizationStatus } from '../../const';
+import { State } from '../../store/types';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];

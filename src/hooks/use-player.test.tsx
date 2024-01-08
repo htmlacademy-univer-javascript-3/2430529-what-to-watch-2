@@ -7,10 +7,11 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 
 import { usePlayer } from './use-player';
 import { createAPI } from '../services/api';
-import { State } from '../types/state';
+
 import { ReducerName } from '../store/reducer';
 import { AuthorizationStatus } from '../const';
 import films from '../mocks/films';
+import { State } from '../store/types';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];

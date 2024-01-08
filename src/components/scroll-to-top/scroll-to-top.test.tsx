@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
-import ScrollToTop from './scroll-to-top';
+import { ScrollToTop } from '.';
 
 describe('ScrollToTop Component', () => {
   it('scrolls to the top when the location changes', () => {
