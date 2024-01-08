@@ -4,9 +4,9 @@ type Props = {
   onChange: (value: number) => void;
 };
 
-const ratingStar = [...Array(10).keys()].reverse();
+const ratingStars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].reverse();
 
-export default function RatingInput({ onChange }: Props) {
+export function RatingInput({ onChange }: Props) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       onChange(Number(e.target.value));
@@ -16,7 +16,7 @@ export default function RatingInput({ onChange }: Props) {
   return (
     <div className="rating">
       <div className="rating__stars">
-        {ratingStar.map((rating) => (
+        {ratingStars.map((rating) => (
           <Fragment key={`star-rating-${rating}`}>
             <input
               className="rating__input"

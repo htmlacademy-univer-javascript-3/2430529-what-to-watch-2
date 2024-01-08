@@ -1,9 +1,10 @@
 import { ChangeEventHandler, useCallback, useState } from 'react';
-import RatingInput from '../rating-input/rating-input';
-import { useDispatch } from 'react-redux';
 import { postCommentAction } from '../../store/api-actions';
-import { AppDispatch } from '../../types/state';
+
 import { useNavigate } from 'react-router-dom';
+import { RatingInput } from '../rating-input';
+import { AppRoute } from '../../const';
+import { useAppDispatch } from '../../store/hooks';
 
 type Props = {
   filmId: string;
@@ -18,11 +19,11 @@ function isCommentFormValid(text: string, score: number) {
   );
 }
 
-export default function CommentForm({ filmId }: Props) {
-  const dispatch = useDispatch<AppDispatch>();
+export function CommentForm({ filmId }: Props) {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const backToFilm = useCallback(
-    () => navigate(`/films/${filmId}`),
+    () => navigate(AppRoute.Film.replace(':id', filmId)),
     [filmId, navigate]
   );
 

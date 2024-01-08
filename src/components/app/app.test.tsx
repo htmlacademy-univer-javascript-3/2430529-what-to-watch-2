@@ -12,8 +12,8 @@ import { createAPI } from '../../services/api';
 import { ReducerName } from '../../store/reducer';
 import { AuthorizationStatus } from '../../const';
 import films from '../../mocks/films';
-import { State } from '../../types/state';
 import { ALL_GENRES } from '../../types/genres';
+import { State } from '../../store/types';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -106,7 +106,7 @@ describe('logged in routing', () => {
   it('should render not found when navigated to non-existent route', () => {
     routes.push('/asdasd');
     render(fakeApp);
-    expect(screen.getByText('404 Not Found')).toBeInTheDocument();
+    expect(screen.getByText('Кажется такой страницы нет')).toBeInTheDocument();
   });
 });
 
@@ -178,6 +178,6 @@ describe('not logged in routing', () => {
   it('should render not found when navigated to non-existent route', () => {
     routes.push('/qwertasdfg');
     render(fakeApp);
-    expect(screen.getByText('404 Not Found')).toBeInTheDocument();
+    expect(screen.getByText('Кажется такой страницы нет')).toBeInTheDocument();
   });
 });

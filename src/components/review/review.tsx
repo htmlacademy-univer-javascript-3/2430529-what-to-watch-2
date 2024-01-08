@@ -4,7 +4,7 @@ type Props = {
   review: Review;
 };
 
-export default function ReviewItem({ review }: Props) {
+export function ReviewItem({ review }: Props) {
   const date = new Date(review.date).toLocaleString('en-US', {
     month: 'long',
     day: 'numeric',

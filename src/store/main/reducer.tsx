@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Film, Films, ShortFilm } from '../../types/films';
 import { ALL_GENRES } from '../../types/genres';
-import { ReducerName } from '../reducer';
 import { setError, setGenre } from '../action';
 import {
   fetchFavoriteFilms,
@@ -74,16 +73,18 @@ export const mainReducer = createSlice({
       .addCase(fetchPromoFilmAction.pending, (state) => {
         state.isPromoLoading = true;
       })
-      //   .addCase(setFavorite.fulfilled, (state, action) => {
-      //     if (state.promo && action.payload.id === state.promo.id) {
-      //       state.promo = action.payload;
-      //     }
-      //     state.favoriteCount += action.payload.isFavorite ? 1 : -1;
-      //   })
-      //   .addCase(logoutAction.fulfilled, (state) => {
-      //     state.favoriteFilms = [];
-      //     state.favoriteCount = 0;
-      //   })
+
+      .addCase(setFavorite.fulfilled, (state, action) => {
+        if (state.promo && action.payload.id === state.promo.id) {
+          state.promo = action.payload;
+        }
+        state.favoriteCount += action.payload.isFavorite ? 1 : -1;
+      })
+      .addCase(logoutAction.fulfilled, (state) => {
+        state.favoriteFilms = [];
+        state.favoriteCount = 0;
+      })
+
       .addCase(postCommentAction.fulfilled, (state, action) => {
         state.error = null;
         action.payload.backToFilm();

@@ -5,7 +5,7 @@ type Props = {
   dark?: boolean;
 };
 
-export default function Logo({ dark }: Props) {
+export function Logo({ dark }: Props) {
   return (
     <div className="logo">
       <Link

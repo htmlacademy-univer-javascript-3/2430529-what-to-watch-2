@@ -1,35 +1,29 @@
-import { useSelector } from 'react-redux';
-import Footer from '../../components/footer/footer';
-import ListFilms from '../../components/list-films/list-films';
-import ListGenres from '../../components/list-genres/list-genres';
-import Logo from '../../components/logo/logo';
 import { ShortFilm } from '../../types/films';
-import { RootState } from '../../store';
+
 import { useEffect, useMemo, useState } from 'react';
 import { ALL_GENRES } from '../../types/genres';
-import ShowMore from '../../components/show-more/show-more';
-import Spinner from '../../components/spinner/spinner';
-import UserBlock from '../../components/user-block/user-block';
-import { ReducerName } from '../../store/reducer';
+import { PlayButton } from '../../components/play-button';
+import { MyListButton } from '../../components/my-list-button';
+import { Logo } from '../../components/logo';
+import { UserBlock } from '../../components/user-block';
+import { ListGenres } from '../../components/list-genres';
+import { ListFilms } from '../../components/list-films';
+import { Spinner } from '../../components/spinner';
+import { ShowMore } from '../../components/show-more';
+import { Footer } from '../../components/footer';
+import { MainSelector } from '../../store/main/selector';
+import { useAppSelector } from '../../store/hooks';
 
 const LIMIT_FILMS = 8;
 
 const getFilmsByGenre = (films: ShortFilm[], genre: string) =>
   genre === ALL_GENRES ? films : films.filter((film) => film.genre === genre);
 
-export default function MainPage() {
-  const films = useSelector(
-    (state: RootState) => state[ReducerName.Main].films
-  );
-  const promoFilm = useSelector(
-    (state: RootState) => state[ReducerName.Main].promo
-  );
-  const currentGenre = useSelector(
-    (state: RootState) => state[ReducerName.Main].currentGenre
-  );
-  const isLoadingFilms = useSelector(
-    (state: RootState) => state[ReducerName.Main].isFilmsLoading
-  );
+export function MainPage() {
+  const films = useAppSelector(MainSelector.films);
+  const promoFilm = useAppSelector(MainSelector.promo);
+  const currentGenre = useAppSelector(MainSelector.currentGenre);
+  const isLoadingFilms = useAppSelector(MainSelector.isFilmsLoading);
 
   const currentFilms = useMemo(
     () => getFilmsByGenre(films, currentGenre),
@@ -81,25 +75,8 @@ export default function MainPage() {
                 </p>
 
                 <div className="film-card__buttons">
-                  <button
-                    className="btn btn--play film-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <button
-                    className="btn btn--list film-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                    <span className="film-card__count">9</span>
-                  </button>
+                  <PlayButton filmId={promoFilm.id} />
+                  <MyListButton filmId={promoFilm.id} />
                 </div>
               </div>
             </div>
