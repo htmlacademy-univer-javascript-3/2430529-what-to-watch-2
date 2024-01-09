@@ -73,7 +73,6 @@ export const mainReducer = createSlice({
       .addCase(fetchPromoFilmAction.pending, (state) => {
         state.isPromoLoading = true;
       })
-
       .addCase(setFavorite.fulfilled, (state, action) => {
         if (state.promo && action.payload.id === state.promo.id) {
           state.promo = action.payload;
@@ -84,7 +83,6 @@ export const mainReducer = createSlice({
         state.favoriteFilms = [];
         state.favoriteCount = 0;
       })
-
       .addCase(postCommentAction.fulfilled, (state, action) => {
         state.error = null;
         action.payload.backToFilm();
