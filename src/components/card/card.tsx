@@ -26,15 +26,18 @@ export const Card = memo(({ film }: Props) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <div className="small-film-card__image">
-        {isHover && (
-          <VideoPlayer
-            src={film.previewVideoLink}
-            preview={film.previewImage}
-          />
-        )}
-        {!isHover && <img src={film.previewImage} alt={film.name} />}
-      </div>
+      <Link to={AppRoute.Film.replace(':id', film.id.toString())}>
+        <div className="small-film-card__image">
+          {isHover && (
+            <VideoPlayer
+              src={film.previewVideoLink}
+              preview={film.previewImage}
+            />
+          )}
+          {!isHover && <img src={film.previewImage} alt={film.name} />}
+        </div>
+      </Link>
+
       <h3 className="small-film-card__title">
         <Link
           className="small-film-card__link"

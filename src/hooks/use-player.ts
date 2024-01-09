@@ -1,10 +1,9 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { ReducerName } from '../store/reducer';
 import { ONE_HUNDRED_PERCENT } from '../const';
+import { useAppSelector } from '../store/hooks';
+import { FilmsSelector } from '../store/films/selector';
 
 const POSITION_CORRECTION = 25;
 const SECONDS_IN_HOUR = 3600;
@@ -27,9 +26,8 @@ function getLeftTime(duration: number, currentTime: number) {
 }
 
 export function usePlayer() {
-  const videoLink = useSelector(
-    (state: RootState) => state[ReducerName.Films].film?.videoLink
-  );
+  const film = useAppSelector(FilmsSelector.film);
+  const videoLink = film?.videoLink;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -83,6 +81,7 @@ export function usePlayer() {
   }, [progress]);
 
   return {
+    film,
     videoRef,
     videoLink,
     handleTimeUpdate,

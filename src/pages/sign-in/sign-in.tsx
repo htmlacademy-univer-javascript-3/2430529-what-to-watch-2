@@ -64,6 +64,26 @@ export function SingInPage() {
   };
 
   useEffect(() => {
+    if (loginRef.current) {
+      const checkingPassword = isLoginValid(loginRef.current.value);
+      if (!checkingPassword) {
+        setPasswordError(true);
+        setMessageError('Please enter a valid password');
+      }
+    }
+  }, [loginRef.current]);
+
+  useEffect(() => {
+    if (passwordRef.current) {
+      const checkingLogin = isLoginValid(passwordRef.current.value);
+      if (!checkingLogin) {
+        setLoginError(true);
+        setMessageError('Please enter a valid email address');
+      }
+    }
+  }, [passwordRef.current]);
+
+  useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       navigate(AppRoute.Main);
     }
@@ -120,7 +140,11 @@ export function SingInPage() {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit">
+            <button
+              className="sign-in__btn"
+              type="submit"
+              disabled={!(loginError && passwordError)}
+            >
               Sign in
             </button>
           </div>

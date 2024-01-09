@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useMemo } from 'react';
-
+import { useCallback, useEffect } from 'react';
 
 import { AuthorizationSelector } from '../../store/authorization/selectors';
 import { MainSelector } from '../../store/main/selector';
-import { AuthorizationStatus, FilmStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, FilmStatus } from '../../const';
 import { fetchFavoriteFilms, setFavorite } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   filmId: string;
@@ -13,6 +13,7 @@ type Props = {
 
 export function MyListButton(props: Props) {
   const { filmId } = props;
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(AuthorizationSelector.status);
@@ -20,10 +21,7 @@ export function MyListButton(props: Props) {
   const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
   const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
 
-  const isFavoriteFilm = useMemo(
-    () => favoriteFilms && favoriteFilms.find((film) => film.id === filmId),
-    [favoriteFilms, filmId]
-  );
+  const isFavoriteFilm = favoriteFilms.find((film) => film.id === filmId);
 
   const favoriteCount = useAppSelector(MainSelector.favoriteCount);
 
@@ -38,8 +36,11 @@ export function MyListButton(props: Props) {
   }, [dispatch, isAuthorized]);
 
   const handleClick = useCallback(() => {
+    if (!isAuthorized) {
+      navigate(AppRoute.Login);
+    }
     dispatch(setFavorite({ status: newStatusOfFilm, filmId }));
-  }, [dispatch, newStatusOfFilm, filmId]);
+  }, [isAuthorized, dispatch, newStatusOfFilm, filmId, navigate]);
 
   if (!isAuthorized) {
     return null;
@@ -60,11 +61,8 @@ export function MyListButton(props: Props) {
           <use xlinkHref={'#add'}></use>
         </svg>
       )}
-
       <span>My list</span>
-      {favoriteFilms !== null && (
-        <span className="film-card__count">{favoriteCount}</span>
-      )}
+      <span className="film-card__count">{favoriteCount}</span>
     </button>
   );
 }

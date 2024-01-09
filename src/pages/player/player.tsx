@@ -3,6 +3,7 @@ import { usePlayer } from '../../hooks/use-player';
 
 export function PlayerPage() {
   const {
+    film,
     videoRef,
     videoLink,
     handleTimeUpdate,
@@ -21,7 +22,7 @@ export function PlayerPage() {
         ref={videoRef}
         src={videoLink}
         className="player__video"
-        poster="img/player-poster.jpg"
+        poster={film?.previewImage}
         onTimeUpdate={handleTimeUpdate}
         data-testid="video-player"
       />
@@ -60,7 +61,7 @@ export function PlayerPage() {
             </svg>
             <span>{isPlaying ? 'Pause' : 'Play'}</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{film?.name}</div>
 
           <button
             type="button"

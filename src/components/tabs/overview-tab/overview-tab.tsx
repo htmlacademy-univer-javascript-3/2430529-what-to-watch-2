@@ -40,9 +40,7 @@ export default function OverviewTab({ film }: Props) {
       </div>
 
       <div className="film-card__text">
-        {film.description.split('.').map((str) => (
-          <p key={str.length}>{str}</p>
-        ))}
+        <p>{film.description}</p>
 
         <p className="film-card__director">
           <strong>Director: {film.director}</strong>

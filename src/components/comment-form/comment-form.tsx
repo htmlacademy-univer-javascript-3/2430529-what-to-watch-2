@@ -15,7 +15,7 @@ const MAX_CHAR_LIMIT = 400;
 
 function isCommentFormValid(text: string, score: number) {
   return (
-    text.length >= MIN_CHAR_LIMIT && text.length <= MAX_CHAR_LIMIT && score > 0
+    text.length >= MIN_CHAR_LIMIT && text.length < MAX_CHAR_LIMIT && score > 0
   );
 }
 
@@ -54,7 +54,7 @@ export function CommentForm({ filmId }: Props) {
   );
 
   return (
-    <form action="#" className="add-review__htmlForm" onSubmit={handleSubmit}>
+    <form action="#" className="add-review__form" onSubmit={handleSubmit}>
       <RatingInput onChange={handleRatingChange} />
 
       <div className="add-review__text">
