@@ -108,9 +108,15 @@ describe('not logged in routing', () => {
 
   it('should render login page when navigated to "/login"', () => {
     routes.push('/login');
+    const loginText = 'Email address';
+    const passwordText = 'Password';
+
     render(fakeApp);
-    expect(screen.getByText(/Email address/i)).toBeInTheDocument();
-    expect(screen.getByText(/Password/i)).toBeInTheDocument();
+    const emailInput = screen.getByPlaceholderText(loginText);
+    const passwordInput = screen.getByPlaceholderText(passwordText);
+
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
   });
 
   it('should render film page when navigated to "/films/{id}"', () => {
