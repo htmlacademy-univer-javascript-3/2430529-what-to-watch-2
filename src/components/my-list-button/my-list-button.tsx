@@ -38,8 +38,9 @@ export function MyListButton(props: Props) {
   const handleClick = useCallback(() => {
     if (!isAuthorized) {
       navigate(AppRoute.Login);
+    } else {
+      dispatch(setFavorite({ status: newStatusOfFilm, filmId }));
     }
-    dispatch(setFavorite({ status: newStatusOfFilm, filmId }));
   }, [isAuthorized, dispatch, newStatusOfFilm, filmId, navigate]);
 
   if (!isAuthorized) {
