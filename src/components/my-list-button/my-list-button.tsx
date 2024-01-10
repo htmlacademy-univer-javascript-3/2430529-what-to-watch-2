@@ -1,11 +1,13 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { AuthorizationSelector } from '../../store/authorization/selectors';
-import { MainSelector } from '../../store/main/selector';
 import { AppRoute, AuthorizationStatus, FilmStatus } from '../../const';
 import { fetchFavoriteFilms, setFavorite } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useNavigate } from 'react-router-dom';
+import { ReducerName } from '../../store/reducer';
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
 
 type Props = {
   filmId: string;
@@ -20,18 +22,25 @@ export function MyListButton(props: Props) {
   const authorizationStatus = useAppSelector(AuthorizationSelector.status);
   const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
 
-  const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
+  const favoriteFilms = useSelector(
+    (state: RootState) => state[ReducerName.Main].favoriteFilms
+  );
+  const countOfFavoriteFilms = favoriteFilms?.length;
 
   const isFavoriteFilm = useMemo(
     () => !!favoriteFilms.find((film) => film.id === filmId),
     [favoriteFilms, filmId]
   );
 
-  const favoriteCount = useAppSelector(MainSelector.favoriteCount);
-
   const newStatusOfFilm = isFavoriteFilm
     ? FilmStatus.deleteFromFavorite
     : FilmStatus.addToFavorite;
+
+  useEffect(() => {
+    if (isAuthorized) {
+      dispatch(fetchFavoriteFilms());
+    }
+  }, [dispatch, isAuthorized]);
 
   const handleClick = useCallback(() => {
     if (!isAuthorized) {
@@ -62,7 +71,7 @@ export function MyListButton(props: Props) {
         </svg>
       )}
       <span>My list</span>
-      <span className="film-card__count">{favoriteCount}</span>
+      <span className="film-card__count">{countOfFavoriteFilms}</span>
     </button>
   );
 }

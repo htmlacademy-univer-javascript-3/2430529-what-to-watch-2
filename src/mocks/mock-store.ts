@@ -31,7 +31,6 @@ export function getMockStore(authorizationStatus?: AuthorizationStatus) {
       error: null,
       promo: mockFilm,
       favoriteFilms: [mockFilm],
-      favoriteCount: 1,
     },
   };
 }
