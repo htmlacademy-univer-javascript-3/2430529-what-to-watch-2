@@ -77,7 +77,11 @@ export const mainReducer = createSlice({
         if (state.promo && action.payload.id === state.promo.id) {
           state.promo = action.payload;
         }
-        state.favoriteCount += action.payload.isFavorite ? 1 : -1;
+        if (state.favoriteCount === 0 && !action.payload.isFavorite) {
+          state.favoriteCount = 0;
+        } else {
+          state.favoriteCount += action.payload.isFavorite ? 1 : -1;
+        }
       })
       .addCase(logoutAction.fulfilled, (state) => {
         state.favoriteFilms = [];

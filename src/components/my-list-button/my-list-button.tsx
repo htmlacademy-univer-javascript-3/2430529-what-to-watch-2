@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { AuthorizationSelector } from '../../store/authorization/selectors';
 import { MainSelector } from '../../store/main/selector';
@@ -13,15 +13,19 @@ type Props = {
 
 export function MyListButton(props: Props) {
   const { filmId } = props;
+
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(AuthorizationSelector.status);
 
-  const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
+  const authorizationStatus = useAppSelector(AuthorizationSelector.status);
   const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
 
-  const isFavoriteFilm = favoriteFilms.find((film) => film.id === filmId);
+  const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
+
+  const isFavoriteFilm = useMemo(
+    () => !!favoriteFilms.find((film) => film.id === filmId),
+    [favoriteFilms, filmId]
+  );
 
   const favoriteCount = useAppSelector(MainSelector.favoriteCount);
 
@@ -29,17 +33,12 @@ export function MyListButton(props: Props) {
     ? FilmStatus.deleteFromFavorite
     : FilmStatus.addToFavorite;
 
-  useEffect(() => {
-    if (isAuthorized) {
-      dispatch(fetchFavoriteFilms());
-    }
-  }, [dispatch, isAuthorized]);
-
   const handleClick = useCallback(() => {
     if (!isAuthorized) {
       navigate(AppRoute.Login);
     } else {
       dispatch(setFavorite({ status: newStatusOfFilm, filmId }));
+      dispatch(fetchFavoriteFilms());
     }
   }, [isAuthorized, dispatch, newStatusOfFilm, filmId, navigate]);
 
