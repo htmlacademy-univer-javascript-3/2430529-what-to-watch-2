@@ -10,7 +10,6 @@ import { ListFilms } from '../../components/list-films';
 import { Footer } from '../../components/footer';
 
 export function MyListPage() {
-  const favoriteCount = useAppSelector(MainSelector.favoriteCount);
   const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
 
   const dispatch = useAppDispatch();
@@ -24,7 +23,8 @@ export function MyListPage() {
         <Logo />
 
         <h1 className="page-title user-page__title">
-          My list <span className="user-page__film-count">{favoriteCount}</span>
+          My list{' '}
+          <span className="user-page__film-count">{favoriteFilms.length}</span>
         </h1>
         <UserBlock />
       </header>

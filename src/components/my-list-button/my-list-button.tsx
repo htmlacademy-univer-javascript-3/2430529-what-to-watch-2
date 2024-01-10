@@ -1,11 +1,13 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { AuthorizationSelector } from '../../store/authorization/selectors';
-import { MainSelector } from '../../store/main/selector';
 import { AppRoute, AuthorizationStatus, FilmStatus } from '../../const';
 import { fetchFavoriteFilms, setFavorite } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useNavigate } from 'react-router-dom';
+import { ReducerName } from '../../store/reducer';
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
 
 type Props = {
   filmId: string;
@@ -13,17 +15,22 @@ type Props = {
 
 export function MyListButton(props: Props) {
   const { filmId } = props;
+
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(AuthorizationSelector.status);
 
-  const favoriteFilms = useAppSelector(MainSelector.favoriteFilms);
+  const authorizationStatus = useAppSelector(AuthorizationSelector.status);
   const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
 
-  const isFavoriteFilm = favoriteFilms.find((film) => film.id === filmId);
+  const favoriteFilms = useSelector(
+    (state: RootState) => state[ReducerName.Main].favoriteFilms
+  );
+  const countOfFavoriteFilms = favoriteFilms?.length;
 
-  const favoriteCount = useAppSelector(MainSelector.favoriteCount);
+  const isFavoriteFilm = useMemo(
+    () => !!favoriteFilms.find((film) => film.id === filmId),
+    [favoriteFilms, filmId]
+  );
 
   const newStatusOfFilm = isFavoriteFilm
     ? FilmStatus.deleteFromFavorite
@@ -40,6 +47,7 @@ export function MyListButton(props: Props) {
       navigate(AppRoute.Login);
     } else {
       dispatch(setFavorite({ status: newStatusOfFilm, filmId }));
+      dispatch(fetchFavoriteFilms());
     }
   }, [isAuthorized, dispatch, newStatusOfFilm, filmId, navigate]);
 
@@ -63,7 +71,7 @@ export function MyListButton(props: Props) {
         </svg>
       )}
       <span>My list</span>
-      <span className="film-card__count">{favoriteCount}</span>
+      <span className="film-card__count">{countOfFavoriteFilms}</span>
     </button>
   );
 }

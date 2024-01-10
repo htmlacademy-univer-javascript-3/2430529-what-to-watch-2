@@ -23,7 +23,6 @@ describe('Main reducer', () => {
       error: null,
       promo: null,
       favoriteFilms: [],
-      favoriteCount: 0,
       isPromoLoading: false,
     };
   });
@@ -88,14 +87,6 @@ describe('Main reducer', () => {
         }).favoriteFilms
       ).toEqual(mockFilms);
     });
-    it('should set count of favorite films on fulfilled', () => {
-      expect(
-        mainReducer.reducer(state, {
-          type: fetchFavoriteFilms.fulfilled.type,
-          payload: mockFilms,
-        }).favoriteCount
-      ).toEqual(mockFilms.length);
-    });
     it('should set favorite films empty on rejected', () => {
       expect(
         mainReducer.reducer(state, {
@@ -103,14 +94,6 @@ describe('Main reducer', () => {
           payload: mockFilms,
         }).favoriteFilms
       ).toEqual([]);
-    });
-    it('should set count of favorite films equal 0 on rejected', () => {
-      expect(
-        mainReducer.reducer(state, {
-          type: fetchFavoriteFilms.rejected.type,
-          payload: mockFilms.length,
-        }).favoriteCount
-      ).toEqual(0);
     });
   });
 

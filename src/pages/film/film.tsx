@@ -19,6 +19,8 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { FilmsSelector } from '../../store/films/selector';
 import { AuthorizationSelector } from '../../store/authorization/selectors';
 
+const LIMIT_SIMILAR_FILMS = 4;
+
 export function FilmPage() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
@@ -29,7 +31,10 @@ export function FilmPage() {
   const isLoadingFilm = useAppSelector(FilmsSelector.isLoadingFilm);
 
   const reviews = useAppSelector(FilmsSelector.reviews);
-  const similarFilms = useAppSelector(FilmsSelector.similarFilms);
+  const similarFilms = useAppSelector(FilmsSelector.similarFilms).slice(
+    0,
+    LIMIT_SIMILAR_FILMS
+  );
 
   useEffect(() => {
     if (id) {

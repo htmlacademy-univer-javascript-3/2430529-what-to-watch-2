@@ -9,5 +9,4 @@ export const MainSelector = {
   isFilmsLoading: (state: State) => state[ReducerName.Main].isFilmsLoading,
   error: (state: State) => state[ReducerName.Main].error,
   favoriteFilms: (state: State) => state[ReducerName.Main].favoriteFilms,
-  favoriteCount: (state: State) => state[ReducerName.Main].favoriteCount,
 } as const;

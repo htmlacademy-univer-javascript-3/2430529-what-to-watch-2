@@ -4,29 +4,34 @@ import { AuthorizationStatus } from '../const';
 import { UserData } from '../types/user';
 import { Review } from '../types/review';
 
-export const setGenre = createAction('setGenre', (value: string) => ({
+export const setGenre = createAction('data/setGenre', (value: string) => ({
   payload: value,
 }));
 
-export const setError = createAction('setError', (error: string | null) => ({
-  payload: error,
-}));
-
-export const loadFilms = createAction<Films>('loadFilms');
-
-export const setisLoadingFilms = createAction<boolean>('setisLoadingFilms');
-
-export const setAuthorizationStatus = createAction<AuthorizationStatus>(
-  'setAuthorizationStatus'
+export const setError = createAction(
+  'data/setError',
+  (error: string | null) => ({
+    payload: error,
+  })
 );
 
-export const setUser = createAction<UserData>('setUser');
+export const loadFilms = createAction<Films>('data/loadFilms');
 
-export const setPromoFilm = createAction<PromoFilm>('setPromoFilm');
+export const setisLoadingFilms = createAction<boolean>(
+  'data/setisLoadingFilms'
+);
 
-export const setFilm = createAction<Film>('setFilm');
-export const setIsLoadingFilm = createAction<boolean>('setIsLoadingFilm');
-export const setIsErrorFilm = createAction<boolean>('setIsErrorFilm');
+export const setAuthorizationStatus = createAction<AuthorizationStatus>(
+  'user/setAuthorizationStatus'
+);
+
+export const setUser = createAction<UserData>('user/set');
+
+export const setPromoFilm = createAction<PromoFilm>('data/setPromo');
+
+export const setFilm = createAction<Film>('data/setFilm');
+export const setIsLoadingFilm = createAction<boolean>('data/setIsLoadingFilm');
+export const setIsErrorFilm = createAction<boolean>('data/setIsErrorFilm');
 
 export const setSimilarFilms = createAction<ShortFilm[]>('setSimilarFilms');
-export const setReviews = createAction<Review[]>('setReviews');
+export const setReviews = createAction<Review[]>('data/setReviews');
