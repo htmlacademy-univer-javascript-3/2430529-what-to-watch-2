@@ -33,5 +33,5 @@ export const setFilm = createAction<Film>('data/setFilm');
 export const setIsLoadingFilm = createAction<boolean>('data/setIsLoadingFilm');
 export const setIsErrorFilm = createAction<boolean>('data/setIsErrorFilm');
 
-export const setSimilarFilms = createAction<ShortFilm[]>('setSimilarFilms');
+export const setSimilarFilms = createAction<ShortFilm[]>('data/setSimilarFilms');
 export const setReviews = createAction<Review[]>('data/setReviews');
